@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Agendar reunión — Julian Molineris</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={ darkMode:'class' }</script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-4">Agendar una reunión</h1>
+    <form id="m" class="grid gap-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-xl">
+      <input name="name" placeholder="Tu nombre" required class="px-3 py-2 rounded-lg border"/>
+      <input name="email" type="email" placeholder="Tu email" required class="px-3 py-2 rounded-lg border"/>
+      <div class="grid grid-cols-2 gap-3">
+        <input name="date" type="date" required class="px-3 py-2 rounded-lg border"/>
+        <input name="time" type="time" required class="px-3 py-2 rounded-lg border"/>
+      </div>
+      <input name="durationMin" type="number" value="30" min="15" step="15" class="px-3 py-2 rounded-lg border"/>
+      <textarea name="notes" placeholder="Notas" rows="3" class="px-3 py-2 rounded-lg border"></textarea>
+      <div class="g-recaptcha" data-sitekey="6Ldbp8krAAAAAHrETHu5cOQlO1IFFdCWON1N8sZg"></div>
+      <button class="px-4 py-2 rounded-lg bg-indigo-600 text-white">Solicitar reunión</button>
+      <p id="s" class="text-sm text-slate-600 dark:text-slate-300"></p>
+    </form>
+  </main>
+<script>
+const API = "http://localhost:8787";
+document.getElementById('m').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const payload = Object.fromEntries(fd.entries());
+  const tokenEl = document.querySelector('input[name="cf-turnstile-response"]');
+  payload.captchaToken = tokenEl ? tokenEl.value : '';
+  const res = await fetch(API + '/api/meeting', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+  const data = await res.json();
+  const s = document.getElementById('s');
+  if (data.ok) { s.textContent = 'Solicitud enviada ✅ (revisá tu email, llega la invitación)'; e.target.reset(); } else { s.textContent = 'Error: ' + (data.error || 'intentalo de nuevo'); }
+});
+</script>
+<script>window.JM_API_BASE = window.JM_API_BASE || "http://localhost:8787";</script>
+<script src="jm-chat.js"></script>
+</body></html>
