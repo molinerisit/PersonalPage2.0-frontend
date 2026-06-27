@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>Julian Molineris — Full Stack Developer · QA Tester</title>
-  <meta content="Portafolio profesional de Julian Molineris: proyectos, experiencia y contacto." name="description" />
+  <title>Julian Molineris — Full Stack Developer (Node.js · React · Flutter)</title>
+  <meta content="Desarrollador Full Stack en Rosario, Argentina. Construyo SaaS y soluciones end-to-end con Node.js, React/Next.js y Flutter. Proyecto destacado: Venta Simple, en producción." name="description" />
   <link href="assets/favicon.svg" rel="icon" type="image/svg+xml" />
-  <meta content="Julian Molineris — Full Stack Developer · QA Tester" property="og:title" />
+  <meta content="Julian Molineris — Full Stack Developer" property="og:title" />
   <meta content="Portafolio profesional, proyectos, experiencia y contacto." property="og:description" />
   <meta content="website" property="og:type" />
   <meta content="https://julianmolineris.com" property="og:url" />
+  <meta content="https://julianmolineris.com/assets/venta-simple/vs-pos.png" property="og:image" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://julianmolineris.com/" />
   <script type="application/ld+json">{
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Julian Molineris",
-    "jobTitle":"Full Stack Developer · QA Tester",
+    "jobTitle":"Full Stack Developer",
     "url":"https://julianmolineris.com",
-    "sameAs":["https://github.com/julianmolinerisit","https://linkedin.com/in/julianmolineris"],
+    "sameAs":["https://github.com/molinerisit","https://linkedin.com/in/julianmolineris"],
     "email":"mailto:julianmolinerisit@gmail.com",
     "telephone":"+54 341-2527455",
     "address":{"@type":"PostalAddress","addressLocality":"Rosario","addressCountry":"AR"}
@@ -49,14 +52,116 @@
       if (saved === 'dark') document.documentElement.classList.add('dark')
     })();
     const I18N = {
-      es: { nav_projects: 'Proyectos', nav_experience: 'Experiencia', nav_contact: 'Contacto', nav_info: '/info', btn_cv: 'Descargar CV', hero_cta_projects: 'Ver proyectos', hero_cta_contact: 'Contactar', section_projects: 'Proyectos destacados', section_experience: 'Experiencia profesional', section_contact: 'Contacto', faq: 'Preguntas frecuentes' },
-      en: { nav_projects: 'Projects', nav_experience: 'Experience', nav_contact: 'Contact', nav_info: '/info', btn_cv: 'Download CV', hero_cta_projects: 'View projects', hero_cta_contact: 'Contact', section_projects: 'Featured projects', section_experience: 'Professional experience', section_contact: 'Contact', faq: 'FAQ' }
+      es: {
+        nav_projects: 'Proyectos', nav_experience: 'Experiencia', nav_contact: 'Contacto', nav_info: '/info', btn_cv: 'Descargar CV',
+        hero_subtitle: 'Full Stack Developer · Node.js · React · Flutter',
+        hero_tagline: 'Construyo SaaS y soluciones end-to-end para negocios reales.<br>Rosario, Argentina · Disponible: Remoto / Full-time / Freelance',
+        hero_cta_projects: 'Ver proyectos', hero_cta_contact: 'Contactar',
+        section_projects: 'Proyectos destacados',
+        vs_badge: 'EN PRODUCCIÓN · CLIENTES REALES',
+        vs_title: 'Venta Simple — SaaS de gestión para comercios',
+        vs_desc: 'Plataforma completa que diseñé y construí end-to-end: POS de escritorio offline-first, panel web en la nube, app móvil y facturación electrónica AFIP/ARCA.',
+        vs_cta_case: 'Ver caso completo', vs_cta_demo: '🌐 Demo en vivo',
+        orb_title: 'Axiia / Kairos — Asistentes con IA',
+        orb_desc: 'Axiia es mi SaaS de asistentes con IA; Kairos —el que te atiende en esta web— vende y responde por web y WhatsApp. Demo en vivo.',
+        orb_cta: 'Ver más',
+        agri_title: 'AgriSense — App IoT para viveros',
+        agri_desc: 'Monitoreo de sensores y riego automático con ESP32 y app móvil.',
+        agri_cta: 'Ver más',
+        section_experience: 'Experiencia profesional',
+        exp_free_title: 'Desarrollador Full Stack — Freelance <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–Actualidad)</span>',
+        exp_free_b1: 'Diseñé y construí <strong>Venta Simple</strong>, un SaaS de gestión para comercios, hoy en producción con clientes reales.',
+        exp_free_b2: 'Axiia: plataforma SaaS de asistentes con IA (agente Kairos) para atención al cliente por web y WhatsApp.',
+        exp_free_b3: 'End-to-end: arquitectura, backend/frontend, app móvil y nube.',
+        exp_qa_title: 'QA Tester — uTest <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–2023)</span>',
+        exp_qa_b1: 'Testing funcional y manual en e-commerce para clientes internacionales.',
+        exp_qa_b2: 'Casos de prueba y reportes de bugs en Jira.',
+        exp_qa_b3: 'Selenium y Postman.',
+        exp_mac_title: 'Operaciones &amp; Tecnología — La Macelleria <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2019–2025)</span>',
+        exp_mac_b1: 'Lideré y capacité un equipo de 5 personas en sistemas digitales.',
+        exp_mac_b2: 'Diseñé e implementé un sistema interno (Node.js/Next.js) para stock, ventas y tickets.',
+        exp_mac_b3: 'Coordiné la apertura de un nuevo local desde la operativa tecnológica.',
+        rm_heading: 'Roadmap personal <span class="text-slate-500 dark:text-slate-400 text-xl ml-2 font-normal">(trayectoria y objetivos)</span>',
+        rm1_t: 'Nacimiento', rm1_d: 'Nací en Rosario, Argentina. Desde chico me atrajo la tecnología y la ciencia.',
+        rm2_t: 'Escuela Secundaria Técnica', rm2_d: 'Finalicé la secundaria en 2018 en Rosario. Participé en cursos de robótica y mis primeras prácticas con hardware y programación.',
+        rm3_t: 'NASA Space Apps Challenge', rm3_d: 'Participé en el hackatón internacional en Rosario. Ganamos la categoría local con un proyecto innovador.',
+        rm4_t: 'Ingreso a Ingeniería en Sistemas (UTN)', rm4_d: 'Aprobé el cursillo de ingreso y comencé la carrera. Tras el primer mes pausé para trabajar y apoyar económicamente en casa.',
+        rm5_t: 'La Macelleria (negocio familiar)', rm5_d: 'Digitalicé procesos y desarrollé soluciones internas de gestión. Aprendí a aplicar tecnología a problemas reales.',
+        rm6_t: 'Certificación Google IT Support & QA', rm6_d: 'Formación internacional orientada a práctica que consolidó testing, troubleshooting y soporte. Inicio en uTest como QA freelance.',
+        rm7_t: 'Primeros proyectos freelance', rm7_d: 'Desarrollo de aplicaciones y sistemas a medida para pequeños comercios, integrando software y automatización.',
+        rm8_t: 'Consolidación freelance', rm8_d: 'Profundicé en backend, frontend y QA en proyectos reales para PYMEs.',
+        rm9_t: 'Proyectos clave y marca personal', rm9_d: 'Venta Simple (gestión para comercios), Axiia / Kairos (asistentes con IA), AgriSense (IoT para viveros) y lanzamiento de Cibergaucho.',
+        rm10_t: 'Licenciatura en Informática (Universidad Siglo 21)', rm10_d: 'Con estabilidad económica retomé los estudios, ahora en la Licenciatura en Informática de la Universidad Siglo 21. Hoy estudiante avanzado (3er año), combinando formación con proyectos en producción.',
+        faq: 'Preguntas frecuentes',
+        faq_q1: '¿Estás disponible para nuevos proyectos?',
+        faq_a1: 'Sí, disponibilidad <strong>Full-time / Freelance / Remoto</strong>. Contame tu idea y coordinamos una call.',
+        faq_q2: '¿Cuál es tu stack principal?',
+        faq_a2: 'Node.js, TypeScript, React/Next.js, Flutter, Python, SQL. IA aplicada a procesos de negocio: análisis de datos y toma de decisiones. QA: Selenium, Postman, Jira.',
+        faq_q3: '¿Dónde puedo ver tus proyectos?',
+        faq_a3: 'En el <a class="underline hover:text-indigo-500" href="#proyectos">portafolio</a> y en GitHub: <a class="underline hover:text-indigo-500" href="https://github.com/molinerisit" rel="noopener" target="_blank">molinerisit</a>.',
+        section_contact: 'Contacto',
+        ct_intro: '¿Hablamos? Escribime y te respondo a la brevedad.<br><span class="text-xs text-slate-500">⏱️ Tiempo de respuesta promedio: <b>~5 horas</b>.</span>',
+        ct_ph_name: 'Tu nombre', ct_ph_email: 'Tu email', ct_ph_msg: 'Tu mensaje', ct_send: 'Enviar'
+      },
+      en: {
+        nav_projects: 'Projects', nav_experience: 'Experience', nav_contact: 'Contact', nav_info: '/info', btn_cv: 'Download CV',
+        hero_subtitle: 'Full Stack Developer · Node.js · React · Flutter',
+        hero_tagline: 'I build SaaS and end-to-end solutions for real businesses.<br>Rosario, Argentina · Available: Remote / Full-time / Freelance',
+        hero_cta_projects: 'View projects', hero_cta_contact: 'Get in touch',
+        section_projects: 'Featured projects',
+        vs_badge: 'IN PRODUCTION · REAL CLIENTS',
+        vs_title: 'Venta Simple — Management SaaS for retail',
+        vs_desc: 'A complete platform I designed and built end-to-end: offline-first desktop POS, cloud web dashboard, mobile app and electronic invoicing (AFIP/ARCA).',
+        vs_cta_case: 'View full case', vs_cta_demo: '🌐 Live demo',
+        orb_title: 'Axiia / Kairos — AI assistants',
+        orb_desc: 'Axiia is my AI-assistant SaaS; Kairos —the one chatting with you here— sells and replies over web and WhatsApp. Live demo.',
+        orb_cta: 'Learn more',
+        agri_title: 'AgriSense — IoT app for nurseries',
+        agri_desc: 'Sensor monitoring and automated irrigation with ESP32 and a mobile app.',
+        agri_cta: 'Learn more',
+        section_experience: 'Professional experience',
+        exp_free_title: 'Full Stack Developer — Freelance <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–Present)</span>',
+        exp_free_b1: 'Designed and built <strong>Venta Simple</strong>, a management SaaS for retail, now in production with real clients.',
+        exp_free_b2: 'Axiia: an AI-assistant SaaS (agent: Kairos) for customer service over web and WhatsApp.',
+        exp_free_b3: 'End-to-end: architecture, backend/frontend, mobile app and cloud.',
+        exp_qa_title: 'QA Tester — uTest <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–2023)</span>',
+        exp_qa_b1: 'Functional and manual testing on e-commerce for international clients.',
+        exp_qa_b2: 'Test cases and bug reports in Jira.',
+        exp_qa_b3: 'Selenium and Postman.',
+        exp_mac_title: 'Operations &amp; Technology — La Macelleria <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2019–2025)</span>',
+        exp_mac_b1: 'Led and trained a team of 5 on digital systems.',
+        exp_mac_b2: 'Designed and implemented an internal system (Node.js/Next.js) for stock, sales and tickets.',
+        exp_mac_b3: 'Coordinated the opening of a new store from the tech operations side.',
+        rm_heading: 'Personal roadmap <span class="text-slate-500 dark:text-slate-400 text-xl ml-2 font-normal">(journey & goals)</span>',
+        rm1_t: 'Born', rm1_d: 'Born in Rosario, Argentina. Drawn to technology and science from an early age.',
+        rm2_t: 'Technical High School', rm2_d: 'Finished high school in 2018 in Rosario. Took robotics courses and my first hands-on work with hardware and programming.',
+        rm3_t: 'NASA Space Apps Challenge', rm3_d: 'Took part in the international hackathon in Rosario. We won the local category with an innovative project.',
+        rm4_t: 'Started Information Systems Engineering (UTN)', rm4_d: 'Passed the entrance course and started the degree. After the first month I paused to work and help support my family.',
+        rm5_t: 'La Macelleria (family business)', rm5_d: 'Digitized processes and built internal management solutions. Learned to apply technology to real problems.',
+        rm6_t: 'Google IT Support & QA Certification', rm6_d: 'Practice-oriented international training that consolidated testing, troubleshooting and support. Started at uTest as a freelance QA.',
+        rm7_t: 'First freelance projects', rm7_d: 'Built custom apps and systems for small businesses, combining software and automation.',
+        rm8_t: 'Freelance consolidation', rm8_d: 'Went deeper into backend, frontend and QA on real projects for SMEs.',
+        rm9_t: 'Key projects & personal brand', rm9_d: 'Venta Simple (retail management), Axiia / Kairos (AI assistants), AgriSense (IoT for nurseries) and the launch of Cibergaucho.',
+        rm10_t: 'Computer Science degree (Universidad Siglo 21)', rm10_d: 'With financial stability I resumed my studies, now in the Computer Science degree at Universidad Siglo 21. Today an advanced student (3rd year), combining education with projects in production.',
+        faq: 'FAQ',
+        faq_q1: 'Are you available for new projects?',
+        faq_a1: 'Yes — available <strong>Full-time / Freelance / Remote</strong>. Tell me your idea and let’s set up a call.',
+        faq_q2: 'What is your main stack?',
+        faq_a2: 'Node.js, TypeScript, React/Next.js, Flutter, Python, SQL. AI applied to business processes: data analysis and decision-making. QA: Selenium, Postman, Jira.',
+        faq_q3: 'Where can I see your projects?',
+        faq_a3: 'In the <a class="underline hover:text-indigo-500" href="#proyectos">portfolio</a> and on GitHub: <a class="underline hover:text-indigo-500" href="https://github.com/molinerisit" rel="noopener" target="_blank">molinerisit</a>.',
+        section_contact: 'Contact',
+        ct_intro: 'Let’s talk. Drop me a line and I’ll reply shortly.<br><span class="text-xs text-slate-500">⏱️ Average response time: <b>~5 hours</b>.</span>',
+        ct_ph_name: 'Your name', ct_ph_email: 'Your email', ct_ph_msg: 'Your message', ct_send: 'Send'
+      }
     };
     function setLang(l) {
       localStorage.lang = l;
       const dict = I18N[l] || I18N.es;
-      document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (dict[k]) el.textContent = dict[k]; });
+      document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (dict[k] != null) el.innerHTML = dict[k]; });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => { const k = el.dataset.i18nPh; if (dict[k] != null) el.setAttribute('placeholder', dict[k]); });
       document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('opacity-60', b.dataset.lang !== l));
+      document.querySelectorAll('a[data-i18n="btn_cv"]').forEach(a => { a.href = (l === 'en') ? 'CV_Julian_Molineris_EN.pdf' : 'CV_Julian_Molineris.pdf'; });
       document.documentElement.lang = l;
       window.dispatchEvent(new CustomEvent('jm:lang', { detail: { lang: l } }));
     }
@@ -81,7 +186,6 @@
       </nav>
       <div class="flex items-center gap-2">
         <a class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700" data-i18n="btn_cv" download href="CV_Julian_Molineris.pdf">Descargar CV</a>
-        <a class="px-3 py-1 rounded-lg bg-slate-900/80 text-white text-xs hover:bg-slate-900 transition-colors" href="Edicionenlinea.html">¡Copia mi CV!</a>
         <button class="px-3 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-xs hover:bg-slate-100 dark:hover:bg-slate-800" data-theme-btn onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')">Tema</button>
         <div class="hidden sm:flex items-center gap-1 text-xs ml-2">
           <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="es" onclick="setLang('es')">ES</button>
@@ -96,8 +200,8 @@
     <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-[1fr,360px] gap-10 items-center relative z-10">
       <div>
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Julian Molineris</h1>
-        <p class="mt-2 text-indigo-100/90 text-xl font-medium">Full Stack Developer · QA Tester</p>
-        <p class="mt-3 text-indigo-100/80 text-base">Rosario, Argentina · Disponible: Full-time / Freelance</p>
+        <p class="mt-2 text-indigo-100/90 text-xl font-medium" data-i18n="hero_subtitle">Full Stack Developer · Node.js · React · Flutter</p>
+        <p class="mt-3 text-indigo-100/80 text-base" data-i18n="hero_tagline">Construyo SaaS y soluciones end-to-end para negocios reales.<br>Rosario, Argentina · Disponible: Remoto / Full-time / Freelance</p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a class="px-6 py-3 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm transition-all text-lg font-medium" data-i18n="hero_cta_projects" href="#proyectos">Ver proyectos</a>
           <a class="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-300 text-indigo-900 font-bold text-lg focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-opacity-75 transition-all" data-i18n="hero_cta_contact" href="#contacto">Contactar</a>
@@ -113,41 +217,55 @@
     <!-- Proyectos -->
     <section class="mb-16" id="proyectos">
       <h2 class="text-3xl font-bold mb-8 text-center sm:text-left" data-i18n="section_projects">Proyectos destacados</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <article class="group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl transition-all">
-          <div class="p-6">
-            <h3 class="font-bold text-xl mb-2">Venta Simple — Sistema de gestión</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Stock, ventas, tickets, KPIs; panel web y sync nube.</p>
+
+      <!-- Flagship: Venta Simple -->
+      <article class="rounded-2xl overflow-hidden border border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-800 shadow-xl mb-8">
+        <div class="grid md:grid-cols-2 gap-0">
+          <div class="bg-slate-50 dark:bg-slate-900/40 flex items-center justify-center p-6">
+            <img loading="lazy" src="assets/venta-simple/vs-pos.png" alt="Punto de venta de Venta Simple con impresora y lector" class="w-full max-w-sm rounded-lg" />
+          </div>
+          <div class="p-6 md:p-8 flex flex-col justify-center">
+            <span class="self-start px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold tracking-wide" data-i18n="vs_badge">EN PRODUCCIÓN · CLIENTES REALES</span>
+            <h3 class="font-extrabold text-2xl mt-3" data-i18n="vs_title">Venta Simple — SaaS de gestión para comercios</h3>
+            <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="vs_desc">Plataforma completa que diseñé y construí end-to-end: POS de escritorio offline-first, panel web en la nube, app móvil y facturación electrónica AFIP/ARCA.</p>
             <div class="mt-4 flex flex-wrap gap-2 text-xs">
-              <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">Java</span>
               <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">Next.js</span>
-              <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">MySQL</span>
+              <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">FastAPI</span>
+              <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">Electron</span>
+              <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">Flutter</span>
+              <span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 font-medium">Supabase</span>
             </div>
-            <a class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition" href="project-venta-simple.html">Ver más</a>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition" href="project-venta-simple.html" data-i18n="vs_cta_case">Ver caso completo</a>
+              <a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 text-white text-sm font-semibold hover:bg-cyan-400 transition" href="https://ventasimple.cloud" target="_blank" rel="noopener" data-i18n="vs_cta_demo">🌐 Demo en vivo</a>
+            </div>
           </div>
-        </article>
+        </div>
+      </article>
+
+      <div class="grid md:grid-cols-2 gap-8">
         <article class="group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl transition-all">
           <div class="p-6">
-            <h3 class="font-bold text-xl mb-2">Orbytal-IA — Bot de WhatsApp</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Consultas de stock, vencimientos, automatización.</p>
+            <h3 class="font-bold text-xl mb-2" data-i18n="orb_title">Axiia / Kairos — Asistentes con IA</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1" data-i18n="orb_desc">Axiia es mi SaaS de asistentes con IA; Kairos —el que te atiende en esta web— vende y responde por web y WhatsApp. Demo en vivo.</p>
             <div class="mt-4 flex flex-wrap gap-2 text-xs">
+              <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-medium">IA / LLM</span>
               <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-medium">Node.js</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-medium">Express</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-medium">WhatsApp API</span>
+              <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 font-medium">WhatsApp</span>
             </div>
-            <a class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition" href="project-orbytal-ia.html">Ver más</a>
+            <a class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition" href="project-kairos-ia.html" data-i18n="orb_cta">Ver más</a>
           </div>
         </article>
         <article class="group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl transition-all">
           <div class="p-6">
-            <h3 class="font-bold text-xl mb-2">AgriSense — IoT para viveros</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Monitoreo sensores y riego automático (ESP32).</p>
+            <h3 class="font-bold text-xl mb-2" data-i18n="agri_title">AgriSense — App IoT para viveros</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1" data-i18n="agri_desc">Monitoreo de sensores y riego automático con ESP32 y app móvil.</p>
             <div class="mt-4 flex flex-wrap gap-2 text-xs">
               <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 font-medium">Flutter</span>
               <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 font-medium">Python</span>
               <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 font-medium">IoT</span>
             </div>
-            <a class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition" href="project-agrisense.html">Ver más</a>
+            <a class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition" href="project-agrisense.html" data-i18n="agri_cta">Ver más</a>
           </div>
         </article>
       </div>
@@ -158,26 +276,27 @@
       <h2 class="text-3xl font-bold mb-8 text-center sm:text-left" data-i18n="section_experience">Experiencia profesional</h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg">
-          <h3 class="font-bold text-xl mb-2">Desarrollador Freelance <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–Actualidad)</span></h3>
+          <h3 class="font-bold text-xl mb-2" data-i18n="exp_free_title">Desarrollador Full Stack — Freelance <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–Actualidad)</span></h3>
           <ul class="list-disc ml-5 mt-4 space-y-2 text-slate-700 dark:text-slate-300 text-base">
-            <li>End-to-end: arquitectura, backend/frontend, hardware y nube.</li>
-            <li>Sistema integral: stock, ventas, tickets y panel online.</li>
-            <li>Bot en WhatsApp: stock, vencimientos y asistencia.</li>
+            <li data-i18n="exp_free_b1">Diseñé y construí <strong>Venta Simple</strong>, un SaaS de gestión para comercios, hoy en producción con clientes reales.</li>
+            <li data-i18n="exp_free_b2">Axiia: plataforma SaaS de asistentes con IA (agente Kairos) para atención al cliente por web y WhatsApp.</li>
+            <li data-i18n="exp_free_b3">End-to-end: arquitectura, backend/frontend, app móvil y nube.</li>
           </ul>
         </div>
         <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg">
-          <h3 class="font-bold text-xl mb-2">Tester QA — uTest <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–2023)</span></h3>
+          <h3 class="font-bold text-xl mb-2" data-i18n="exp_qa_title">QA Tester — uTest <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2022–2023)</span></h3>
           <ul class="list-disc ml-5 mt-4 space-y-2 text-slate-700 dark:text-slate-300 text-base">
-            <li>Testing funcional/manual en e-commerce.</li>
-            <li>Casos de prueba y reportes en Jira.</li>
-            <li>Selenium y Postman.</li>
+            <li data-i18n="exp_qa_b1">Testing funcional y manual en e-commerce para clientes internacionales.</li>
+            <li data-i18n="exp_qa_b2">Casos de prueba y reportes de bugs en Jira.</li>
+            <li data-i18n="exp_qa_b3">Selenium y Postman.</li>
           </ul>
         </div>
         <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg md:col-span-2">
-          <h3 class="font-bold text-xl mb-2">Operaciones &amp; Tecnología — La Macelleria <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2019–2025)</span></h3>
+          <h3 class="font-bold text-xl mb-2" data-i18n="exp_mac_title">Operaciones &amp; Tecnología — La Macelleria <span class="text-slate-500 dark:text-slate-400 text-base font-normal">(2019–2025)</span></h3>
           <ul class="list-disc ml-5 mt-4 space-y-2 text-slate-700 dark:text-slate-300 text-base">
-            <li>Gestión de equipo y optimización de procesos digitales.</li>
-            <li>Implementación de sistema interno (Java/Next.js).</li>
+            <li data-i18n="exp_mac_b1">Lideré y capacité un equipo de 5 personas en sistemas digitales.</li>
+            <li data-i18n="exp_mac_b2">Diseñé e implementé un sistema interno (Node.js/Next.js) para stock, ventas y tickets.</li>
+            <li data-i18n="exp_mac_b3">Coordiné la apertura de un nuevo local desde la operativa tecnológica.</li>
           </ul>
         </div>
       </div>
@@ -185,70 +304,67 @@
 
     <!-- Roadmap -->
     <section class="mb-16" id="roadmap">
-      <h2 class="text-3xl font-bold mb-8 text-center sm:text-left">
-        <span>Roadmap personal</span>
-        <span class="text-slate-500 dark:text-slate-400 text-xl ml-2 font-normal">(trayectoria y objetivos)</span>
-      </h2>
+      <h2 class="text-3xl font-bold mb-8 text-center sm:text-left" data-i18n="rm_heading">Roadmap personal <span class="text-slate-500 dark:text-slate-400 text-xl ml-2 font-normal">(trayectoria y objetivos)</span></h2>
       <ol class="relative border-s-2 border-indigo-300 dark:border-indigo-600 ml-3 space-y-10 pl-6">
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🎂</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2000</time>
-          <h3 class="font-bold text-xl mt-1">Nacimiento</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Nací en Rosario, Argentina. Desde chico me atrajo la tecnología y la ciencia.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm1_t">Nacimiento</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm1_d">Nací en Rosario, Argentina. Desde chico me atrajo la tecnología y la ciencia.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🎓</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2015–2018</time>
-          <h3 class="font-bold text-xl mt-1">Escuela Secundaria Técnica</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Finalicé la secundaria en 2018 en Rosario. Participé en cursos de robótica y mis primeras prácticas con hardware y programación.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm2_t">Escuela Secundaria Técnica</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm2_d">Finalicé la secundaria en 2018 en Rosario. Participé en cursos de robótica y mis primeras prácticas con hardware y programación.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🚀</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2017</time>
-          <h3 class="font-bold text-xl mt-1">NASA Space Apps Challenge</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Participé en el hackatón internacional en Rosario. Ganamos la categoría local con un proyecto innovador.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm3_t">NASA Space Apps Challenge</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm3_d">Participé en el hackatón internacional en Rosario. Ganamos la categoría local con un proyecto innovador.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🏫</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2019</time>
-          <h3 class="font-bold text-xl mt-1">Ingreso a Ingeniería en Sistemas (UNR)</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Aprobé el cursillo de ingreso y comencé la carrera. Tras el primer mes pausé para trabajar y apoyar económicamente en casa.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm4_t">Ingreso a Ingeniería en Sistemas (UTN)</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm4_d">Aprobé el cursillo de ingreso y comencé la carrera. Tras el primer mes pausé para trabajar y apoyar económicamente en casa.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🏢</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2019–2021</time>
-          <h3 class="font-bold text-xl mt-1">La Macelleria (negocio familiar)</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Digitalicé procesos y desarrollé soluciones internas de gestión. Aprendí a aplicar tecnología a problemas reales.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm5_t">La Macelleria (negocio familiar)</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm5_d">Digitalicé procesos y desarrollé soluciones internas de gestión. Aprendí a aplicar tecnología a problemas reales.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🌟</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2021</time>
-          <h3 class="font-bold text-xl mt-1">Certificación Google IT Support & QA</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Formación internacional orientada a práctica que consolidó testing, troubleshooting y soporte. Inicio en uTest como QA freelance.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm6_t">Certificación Google IT Support &amp; QA</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm6_d">Formación internacional orientada a práctica que consolidó testing, troubleshooting y soporte. Inicio en uTest como QA freelance.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">💻</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2022</time>
-          <h3 class="font-bold text-xl mt-1">Primeros proyectos freelance</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Desarrollo de aplicaciones y sistemas a medida para pequeños comercios, integrando software y automatización.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm7_t">Primeros proyectos freelance</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm7_d">Desarrollo de aplicaciones y sistemas a medida para pequeños comercios, integrando software y automatización.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🛠</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2023</time>
-          <h3 class="font-bold text-xl mt-1">Consolidación freelance</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Profundicé en backend, frontend y QA en proyectos reales para PYMEs.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm8_t">Consolidación freelance</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm8_d">Profundicé en backend, frontend y QA en proyectos reales para PYMEs.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">📈</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2024</time>
-          <h3 class="font-bold text-xl mt-1">Proyectos clave y marca personal</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Venta Simple (gestión para comercios), Orbytal-IA (bot WhatsApp), AgriSense (IoT para viveros) y lanzamiento de Cibergaucho.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm9_t">Proyectos clave y marca personal</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm9_d">Venta Simple (gestión para comercios), Axiia / Kairos (asistentes con IA), AgriSense (IoT para viveros) y lanzamiento de Cibergaucho.</p>
         </li>
         <li class="ms-6 relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition">
           <div class="absolute -start-4 mt-0.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-semibold shadow-md border-2 border-white dark:border-slate-900">🎯</div>
           <time class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">2025</time>
-          <h3 class="font-bold text-xl mt-1">Regreso a Ingeniería en Sistemas (UNR)</h3>
-          <p class="text-slate-700 dark:text-slate-300 mt-2">Con estabilidad económica, retomé la carrera y foco en combinar práctica + formación para crecer en tech y escalar proyectos.</p>
+          <h3 class="font-bold text-xl mt-1" data-i18n="rm10_t">Licenciatura en Informática (Universidad Siglo 21)</h3>
+          <p class="text-slate-700 dark:text-slate-300 mt-2" data-i18n="rm10_d">Con estabilidad económica retomé los estudios, ahora en la Licenciatura en Informática de la Universidad Siglo 21. Hoy estudiante avanzado (3er año), combinando formación con proyectos en producción.</p>
         </li>
       </ol>
     </section>
@@ -259,23 +375,23 @@
       <div class="space-y-3">
         <details class="group border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
           <summary class="flex cursor-pointer items-center justify-between font-medium">
-            ¿Estás disponible para nuevos proyectos?<span class="transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+            <span data-i18n="faq_q1">¿Estás disponible para nuevos proyectos?</span><span class="transition-transform group-open:rotate-45 text-xl leading-none">+</span>
           </summary>
-          <p class="mt-3 text-slate-700 dark:text-slate-300">Sí, disponibilidad <strong>Full-time / Freelance</strong>. Contame tu idea y coordinamos una call.</p>
+          <p class="mt-3 text-slate-700 dark:text-slate-300" data-i18n="faq_a1">Sí, disponibilidad <strong>Full-time / Freelance / Remoto</strong>. Contame tu idea y coordinamos una call.</p>
         </details>
         <details class="group border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
           <summary class="flex cursor-pointer items-center justify-between font-medium">
-            ¿Cuál es tu stack principal?<span class="transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+            <span data-i18n="faq_q2">¿Cuál es tu stack principal?</span><span class="transition-transform group-open:rotate-45 text-xl leading-none">+</span>
           </summary>
-          <p class="mt-3 text-slate-700 dark:text-slate-300">Java, Node.js, React/Next.js, MySQL, Flutter, Python. QA: Selenium, Postman, JMeter.</p>
+          <p class="mt-3 text-slate-700 dark:text-slate-300" data-i18n="faq_a2">Node.js, TypeScript, React/Next.js, Flutter, Python, SQL. IA aplicada a procesos de negocio: análisis de datos y toma de decisiones. QA: Selenium, Postman, Jira.</p>
         </details>
         <details class="group border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
           <summary class="flex cursor-pointer items-center justify-between font-medium">
-            ¿Dónde puedo ver tus proyectos?<span class="transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+            <span data-i18n="faq_q3">¿Dónde puedo ver tus proyectos?</span><span class="transition-transform group-open:rotate-45 text-xl leading-none">+</span>
           </summary>
-          <p class="mt-3 text-slate-700 dark:text-slate-300">
+          <p class="mt-3 text-slate-700 dark:text-slate-300" data-i18n="faq_a3">
             En el <a class="underline hover:text-indigo-500" href="#proyectos">portafolio</a> y en GitHub:
-            <a class="underline hover:text-indigo-500" href="https://github.com/julianmolinerisit" rel="noopener" target="_blank">julianmolinerisit</a>.
+            <a class="underline hover:text-indigo-500" href="https://github.com/molinerisit" rel="noopener" target="_blank">molinerisit</a>.
           </p>
         </details>
       </div>
@@ -286,7 +402,7 @@
       <h2 class="text-3xl font-bold mb-8 text-center sm:text-left" data-i18n="section_contact">Contacto</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-          <p class="mb-3">
+          <p class="mb-3" data-i18n="ct_intro">
             ¿Hablamos? Escribime y te respondo a la brevedad.<br />
             <span class="text-xs text-slate-500">⏱️ Tiempo de respuesta promedio: <b>~5 horas</b>.</span>
           </p>
@@ -294,17 +410,17 @@
           <!-- FORM: ahora sin action; usa fetch a tu backend + reCAPTCHA -->
           <form id="contacto-form" class="grid gap-3">
             <input class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"
-              name="name" placeholder="Tu nombre" required />
+              name="name" placeholder="Tu nombre" data-i18n-ph="ct_ph_name" required />
             <input class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"
-              name="email" placeholder="Tu email" required type="email" />
+              name="email" placeholder="Tu email" data-i18n-ph="ct_ph_email" required type="email" />
             <textarea
               class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"
-              name="message" placeholder="Tu mensaje" required rows="4"></textarea>
+              name="message" placeholder="Tu mensaje" data-i18n-ph="ct_ph_msg" required rows="4"></textarea>
 
             <!-- Google reCAPTCHA -->
             <div class="g-recaptcha" data-sitekey="6Ldbp8krAAAAAHrETHu5cOQlO1IFFdCWON1N8sZg"></div>
 
-            <button class="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500" type="submit">Enviar</button>
+            <button class="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500" type="submit" data-i18n="ct_send">Enviar</button>
             <p id="contacto-status" class="text-sm text-slate-600 dark:text-slate-300"></p>
           </form>
         </div>
@@ -313,7 +429,7 @@
           <div class="grid gap-2 text-sm">
             <a class="hover:underline" href="mailto:julianmolinerisit@gmail.com">✉ julianmolinerisit@gmail.com</a>
             <a class="hover:underline" href="https://julianmolineris.com" rel="noopener" target="_blank">🌐 https://julianmolineris.com</a>
-            <a class="hover:underline" href="https://github.com/julianmolinerisit" rel="noopener" target="_blank">💻 https://github.com/julianmolinerisit</a>
+            <a class="hover:underline" href="https://github.com/molinerisit" rel="noopener" target="_blank">💻 github.com/molinerisit</a>
             <a class="hover:underline" href="https://linkedin.com/in/julianmolineris" rel="noopener" target="_blank">🔗 https://linkedin.com/in/julianmolineris</a>
             <span>📞 +54 341-2527455</span>
           </div>
@@ -327,20 +443,22 @@
 
   <footer class="mt-16 border-t border-slate-200 dark:border-slate-700">
     <div class="max-w-6xl mx-auto px-4 py-10 grid sm:grid-cols-[1fr,auto] gap-6 items-center">
-      <div class="text-sm text-slate-600 dark:text-slate-400">© 2025 Julian Molineris.</div>
+      <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="yr"></span> Julian Molineris.</div>
       <div class="justify-self-center sm:justify-self-end text-center">
         <img alt="QR /info" class="w-24 h-24 mx-auto rounded-md shadow" src="assets/qr_info.png" />
       </div>
     </div>
   </footer>
 
+  <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
   <!-- Config base del backend para chat y formularios -->
-  <script>window.JM_API_BASE = window.JM_API_BASE || "http://localhost:8787";</script>
+  <script>window.JM_API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";</script>
 
   <!-- Script envío del formulario al backend -->
   <script>
     (function () {
-      const API = window.JM_API_BASE || "http://localhost:8787";
+      const API = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";
       const form = document.getElementById('contacto-form');
       const statusEl = document.getElementById('contacto-status');
 
@@ -375,6 +493,6 @@
   </script>
 
   <!-- Chat widget (usa JM_API_BASE) -->
-  <script src="jm-chat.js"></script>
+  <script src="jm-chat.js?v=4"></script>
 </body>
 </html>

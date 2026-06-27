@@ -1,6 +1,11 @@
-/* Chat de Julian — multilenguaje + memoria + agenda */
+/* Kairos — asistente con IA del portafolio de Julian Molineris.
+   Nació para hacer la atención al cliente de las pymes más ágil y personal.
+   Proactivo + respuestas locales (sin API); fallback a /api/chat solo para texto libre.
+   Diseñado para NO disparar consumo de API: saludo, chips e intenciones comunes se resuelven en el cliente. */
 (() => {
-  const API_BASE = window.JM_API_BASE || "http://localhost:8787";
+  const API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";
+  const KAIRO_IMG = "assets/kairo.png";         // ojos abiertos
+  const KAIRO_BLINK = "assets/kairo-blink.png"; // ojos cerrados (parpadeo)
   const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Argentina/Cordoba";
   const sessionId =
     sessionStorage.getItem("jm_session_id") ||
@@ -15,139 +20,256 @@
     LANG = e.detail?.lang || "es";
     syncUITexts();
   });
+  const isEN = () => LANG === "en";
 
-  const rootHtml = `<div id="jm-chat-root" class="fixed bottom-4 right-4 z-50">
-    <button id="jm-chat-toggle" class="shadow-xl rounded-full w-14 h-14 flex items-center justify-center bg-indigo-600 text-white hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-300" aria-label="Abrir chat">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.027 0-2.014-.147-2.938-.42L3 20l1.42-3.562C4.147 15.514 4 14.527 4 13.5 4 9.582 8.03 6 13 6s8 3.582 8 8z"/>
-      </svg>
+  // ===== Textos de UI =====
+  const UI = {
+    es: {
+      title: "Kairos", subtitle: "Asistente de Julian",
+      welcome: "¡Hola! 👋 Soy Kairos, un asistente con IA que ayuda a las pymes a dar una atención al cliente más ágil y personal. Me construyó Julian. ¿Qué te gustaría ver de su trabajo?",
+      placeholder: "Escribí tu pregunta…", send: "Enviar", writing: "Escribiendo…",
+      proactive: "¡Hola! 👋 Soy Kairos. ¿Te muestro los proyectos de Julian?",
+      uploadNA: "Adjuntar PDF no está habilitado todavía.",
+      netErr: "Error de red. Probá de nuevo en un momento.",
+      srvErr: "Tuve un problema para responder. Probá una de las opciones de abajo 👇"
+    },
+    en: {
+      title: "Kairos", subtitle: "Julian's assistant",
+      welcome: "Hi! 👋 I'm Kairos, an AI assistant that helps SMEs deliver faster, more personal customer service. Julian built me. What would you like to see of his work?",
+      placeholder: "Type your question…", send: "Send", writing: "Typing…",
+      proactive: "Hi! 👋 I'm Kairos. Want me to show you Julian's projects?",
+      uploadNA: "PDF attachment isn't enabled yet.",
+      netErr: "Network error. Please try again in a moment.",
+      srvErr: "I had trouble answering. Try one of the options below 👇"
+    }
+  };
+  const t = (k) => (UI[LANG] || UI.es)[k];
+
+  // ===== Quick replies (chips) y respuestas locales: SIN API =====
+  const CHIPS = {
+    es: [
+      { id: "projects", label: "🚀 Proyectos" },
+      { id: "ventasimple", label: "🛒 Venta Simple" },
+      { id: "stack", label: "🧩 Stack" },
+      { id: "contact", label: "✉️ Contacto" },
+      { id: "cv", label: "📄 Descargar CV" },
+      { id: "meeting", label: "📅 Agendar" }
+    ],
+    en: [
+      { id: "projects", label: "🚀 Projects" },
+      { id: "ventasimple", label: "🛒 Venta Simple" },
+      { id: "stack", label: "🧩 Stack" },
+      { id: "contact", label: "✉️ Contact" },
+      { id: "cv", label: "📄 Download CV" },
+      { id: "meeting", label: "📅 Book a call" }
+    ]
+  };
+
+  const ANSWERS = {
+    es: {
+      projects: "Julian tiene 3 proyectos destacados:\n🛒 Venta Simple — SaaS de gestión EN PRODUCCIÓN\n💬 Kairos — asistente con IA (¡soy yo!)\n🌱 AgriSense — IoT para viveros\n¿Cuál te muestro en detalle?",
+      ventasimple: "Venta Simple es el proyecto estrella: POS de escritorio offline-first + panel web + app móvil + facturación AFIP/ARCA. Está en producción con comercios reales.\n👉 Demo en vivo: https://ventasimple.cloud",
+      stack: "Stack principal de Julian:\n• Backend: Node.js, TypeScript, Python (FastAPI)\n• Frontend/Mobile: React, Next.js, Flutter\n• Datos/Cloud: Supabase/Postgres, Vercel, Railway\n• IA aplicada a procesos de negocio (análisis de datos y decisiones)\n• QA: Selenium, Postman, Jira",
+      contact: "Podés contactar a Julian por:\n✉️ julianmolinerisit@gmail.com\n💼 linkedin.com/in/julianmolineris\n💻 github.com/molinerisit\nO completá el formulario de contacto en la página.",
+      cv: "¡Listo! Te abro el CV para descargar 👇",
+      meeting: "Para coordinar una reunión, usá la página de agenda y elegí fecha y hora. Te llega la invitación por email.\n👉 reuniones.html",
+      whoami: "Soy Kairos, un asistente con IA que nació para hacer la atención al cliente de las pymes más ágil y personal. Acá te ayudo a conocer el trabajo de Julian 😉",
+      fallbackHint: "Puedo contarte sobre proyectos, stack, contacto o ayudarte a agendar. ¿Qué necesitás?"
+    },
+    en: {
+      projects: "Julian has 3 featured projects:\n🛒 Venta Simple — management SaaS IN PRODUCTION\n💬 Kairos — AI assistant (that's me!)\n🌱 AgriSense — IoT for nurseries\nWhich one should I show you?",
+      ventasimple: "Venta Simple is the flagship: offline-first desktop POS + web dashboard + mobile app + AFIP/ARCA invoicing. It's in production with real businesses.\n👉 Live demo: https://ventasimple.cloud",
+      stack: "Julian's main stack:\n• Backend: Node.js, TypeScript, Python (FastAPI)\n• Frontend/Mobile: React, Next.js, Flutter\n• Data/Cloud: Supabase/Postgres, Vercel, Railway\n• AI applied to business processes (data analysis & decisions)\n• QA: Selenium, Postman, Jira",
+      contact: "You can reach Julian via:\n✉️ julianmolinerisit@gmail.com\n💼 linkedin.com/in/julianmolineris\n💻 github.com/molinerisit\nOr use the contact form on the page.",
+      cv: "Done! Opening the CV for download 👇",
+      meeting: "To book a call, use the scheduling page and pick a date and time. You'll get the invite by email.\n👉 reuniones.html",
+      whoami: "I'm Kairos, an AI assistant born to make SME customer service faster and more personal. Here I help you explore Julian's work 😉",
+      fallbackHint: "I can tell you about projects, stack, contact, or help you book a call. What do you need?"
+    }
+  };
+  const ans = (k) => (ANSWERS[LANG] || ANSWERS.es)[k];
+
+  // Acciones locales asociadas a cada intención (navegación sin recargar API)
+  function runLocalAction(id) {
+    const goto = (hash, file) => {
+      if (document.getElementById(hash)) document.getElementById(hash).scrollIntoView({ behavior: "smooth" });
+      else location.href = (file || "index.html") + "#" + hash;
+    };
+    if (id === "projects") setTimeout(() => goto("proyectos"), 400);
+    else if (id === "contact") setTimeout(() => goto("contacto"), 400);
+    else if (id === "cv") setTimeout(() => { const a = document.createElement("a"); a.href = isEN() ? "CV_Julian_Molineris_EN.pdf" : "CV_Julian_Molineris.pdf"; a.download = ""; document.body.appendChild(a); a.click(); a.remove(); }, 300);
+  }
+
+  // Matcher de intención local (palabras clave) -> evita llamar a la API
+  function localIntent(qRaw) {
+    const q = (qRaw || "").toLowerCase();
+    const has = (...w) => w.some((x) => q.includes(x));
+    if (has("venta simple", "ventasimple", " pos", "punto de venta")) return "ventasimple";
+    if (has("proyecto", "project", "portfolio", "portafolio", "trabajos", "work")) return "projects";
+    if (has("stack", "tecnolog", "technolog", "lenguaje", "language", "skill", "herramienta")) return "stack";
+    if (has("contacto", "contact", "email", "correo", "mail", "telefono", "teléfono", "whatsapp", "linkedin", "github")) return "contact";
+    if (has(" cv", "cv ", "curriculum", "currículum", "resume", "resumé", "résumé")) return "cv";
+    if (has("agenda", "reunion", "reunión", "meeting", "call", "llamada", "cita", "schedule", "book")) return "meeting";
+    if (has("quien sos", "quién sos", "quien eres", "who are you", "kairos", "kairo", "asistente", "assistant", "sobre julian", "about julian")) return "whoami";
+    return null;
+  }
+
+  // ===== Render del widget =====
+  const rootHtml = `<style>
+    @keyframes kairo-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    .kairo-float { animation: kairo-float 4s ease-in-out infinite; }
+  </style>
+  <div id="jm-chat-root" class="fixed bottom-4 right-4 z-50">
+    <div id="kairo-bubble" class="hidden absolute bottom-16 right-0 w-60 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm rounded-2xl rounded-br-sm shadow-2xl border border-slate-200 dark:border-slate-700 p-3 pr-7">
+      <button id="kairo-bubble-x" class="absolute top-1 right-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xs" aria-label="Cerrar">✕</button>
+      <span id="kairo-bubble-text"></span>
+    </div>
+    <button id="jm-chat-toggle" class="relative overflow-hidden shadow-xl rounded-full w-16 h-16 flex items-center justify-center bg-white ring-2 ring-indigo-500/60 hover:ring-indigo-500 hover:scale-105 transition focus:outline-none focus:ring-4 focus:ring-indigo-300" aria-label="Abrir chat con Kairos">
+      <span class="kairo-float relative block w-full h-full">
+        <img id="kairo-eyes-open" src="${KAIRO_IMG}" alt="Kairos" class="absolute inset-0 w-full h-full object-cover" />
+        <img id="kairo-eyes-closed" src="${KAIRO_BLINK}" alt="" class="absolute inset-0 w-full h-full object-cover invisible" />
+      </span>
     </button>
-    <div id="jm-chat-panel" class="hidden sm:w-96 w-[92vw] max-w-[380px] h-[70vh] sm:h-[72vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden">
-      <div class="px-4 py-3 flex items-center justify-between bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+    <div id="jm-chat-panel" class="hidden fixed inset-0 z-50 flex flex-col bg-white dark:bg-slate-900 overflow-hidden sm:absolute sm:inset-auto sm:bottom-0 sm:right-0 sm:w-96 sm:max-w-[380px] sm:h-[74vh] sm:rounded-2xl sm:border sm:border-slate-200 sm:dark:border-slate-700 shadow-2xl">
+      <div class="px-4 py-3 flex items-center justify-between bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shrink-0">
         <div class="flex items-center gap-3">
-          <img src="assets/favicon.svg" class="w-7 h-7" alt="JM"/>
+          <img src="${KAIRO_IMG}" class="w-9 h-9 rounded-full bg-white/20 p-0.5" alt="Kairos"/>
           <div>
-            <p class="text-sm font-semibold" data-i18n-chat="title">Asistente de Julian</p>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400" data-i18n-chat="subtitle">Perfil, proyectos y contacto</p>
+            <p class="text-sm font-bold flex items-center gap-1.5" data-i18n-chat="title">Kairos <span class="inline-block w-2 h-2 bg-emerald-400 rounded-full"></span></p>
+            <p class="text-[11px] text-white/80" data-i18n-chat="subtitle">Asistente de Julian</p>
           </div>
         </div>
-        <button id="jm-chat-close" class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" aria-label="Cerrar">✕</button>
+        <button id="jm-chat-close" class="text-white/80 hover:text-white text-lg p-1" aria-label="Cerrar">✕</button>
       </div>
-      <div id="jm-chat-messages" class="h-[calc(100%-128px)] overflow-y-auto p-3 space-y-3 bg-white dark:bg-slate-900"></div>
-      <div class="border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-2">
+      <div id="jm-chat-messages" class="flex-1 min-h-0 overflow-y-auto p-3 space-y-3 bg-slate-50 dark:bg-slate-900"></div>
+      <div id="jm-chat-chips" class="px-3 pt-2 flex flex-wrap gap-1.5 bg-slate-50 dark:bg-slate-900 shrink-0"></div>
+      <div class="border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-2 shrink-0">
         <form id="jm-chat-form" class="flex items-center gap-2">
-          <input id="jm-chat-file" type="file" accept="application/pdf" class="hidden" />
-          <button type="button" id="jm-chat-attach" class="px-2 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm hover:bg-slate-100 dark:hover:bg-slate-800" title="Adjuntar PDF">📎</button>
           <input id="jm-chat-input" type="text" autocomplete="off" placeholder="Escribí tu pregunta…" class="flex-1 px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"/>
           <button class="px-3 py-2 rounded-xl bg-indigo-600 text-white text-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-300" data-i18n-chat="send">Enviar</button>
         </form>
-        <p id="jm-chat-captcha" class="hidden mt-2 text-[12px] text-amber-600"></p>
       </div>
     </div>
   </div>`;
   document.body.insertAdjacentHTML("beforeend", rootHtml);
 
-  const i18nChat = {
-    es: {
-      welcome: "¡Hola! Soy el asistente de Julian Molineris. ¿En qué puedo ayudarte?",
-      title: "Asistente de Julian",
-      subtitle: "Perfil, proyectos y contacto",
-      send: "Enviar",
-      writing: "Escribiendo…",
-      humanCheck: "Necesito verificar que sos humano antes de seguir.",
-      wrongCaptcha: "Respuesta incorrecta. ",
-      followHints:
-        "No llegué a entenderte. Probá: “stack”, “proyectos”, “contacto”, “experiencia”, “formación”.",
-      uploadNA: "Adjuntar PDF no está habilitado en el backend todavía."
-    },
-    en: {
-      welcome: "Hi! I'm Julian Molineris’ assistant. How can I help you?",
-      title: "Julian’s Assistant",
-      subtitle: "Profile, projects & contact",
-      send: "Send",
-      writing: "Typing…",
-      humanCheck: "I need to verify you’re human before continuing.",
-      wrongCaptcha: "Wrong answer. ",
-      followHints:
-        "I didn’t quite get that. Try: “stack”, “projects”, “contact”, “experience”, “education”.",
-      uploadNA: "PDF attachment is not enabled on the backend yet."
-    }
-  };
-  function t(key) {
-    return (i18nChat[LANG] || i18nChat.es)[key];
-  }
-  function syncUITexts() {
-    document
-      .querySelectorAll("[data-i18n-chat='title']")
-      .forEach((e) => (e.textContent = t("title")));
-    document
-      .querySelectorAll("[data-i18n-chat='subtitle']")
-      .forEach((e) => (e.textContent = t("subtitle")));
-    document
-      .querySelectorAll("[data-i18n-chat='send']")
-      .forEach((e) => (e.textContent = t("send")));
-    document
-      .querySelector("#jm-chat-input")
-      ?.setAttribute("placeholder", LANG === "en" ? "Type your question…" : "Escribí tu pregunta…");
-  }
-
   const $ = (s) => document.querySelector(s);
-  const panel = $("#jm-chat-panel"),
-    toggle = $("#jm-chat-toggle"),
-    closeBtn = $("#jm-chat-close"),
-    messages = $("#jm-chat-messages");
-  const form = $("#jm-chat-form"),
-    input = $("#jm-chat-input"),
-    captchaEl = $("#jm-chat-captcha");
-  const fileInput = $("#jm-chat-file"),
-    attachBtn = $("#jm-chat-attach");
+  const panel = $("#jm-chat-panel"), toggle = $("#jm-chat-toggle"), closeBtn = $("#jm-chat-close"),
+    messages = $("#jm-chat-messages"), chipsEl = $("#jm-chat-chips"),
+    form = $("#jm-chat-form"), input = $("#jm-chat-input"),
+    dot = $("#kairo-dot"), bubble = $("#kairo-bubble"), bubbleText = $("#kairo-bubble-text"), bubbleX = $("#kairo-bubble-x"),
+    eyesOpen = $("#kairo-eyes-open"), eyesClosed = $("#kairo-eyes-closed");
 
-  function scrollBottom() {
-    setTimeout(() => {
-      messages.scrollTop = messages.scrollHeight;
-    }, 0);
+  // ── Parpadeo del avatar (copiado del asistente de VentaSimple) ──
+  // Alterna ojos abiertos/cerrados cada 3–5s por 160ms. Se pausa con el chat abierto.
+  let blinkT = null;
+  function setEyes(open) {
+    if (!eyesOpen || !eyesClosed) return;
+    eyesOpen.classList.toggle("invisible", !open);
+    eyesClosed.classList.toggle("invisible", open);
   }
+  function scheduleBlink() {
+    if (blinkT) clearTimeout(blinkT);
+    blinkT = setTimeout(() => {
+      if (!panel.classList.contains("hidden")) { scheduleBlink(); return; }
+      setEyes(false);
+      blinkT = setTimeout(() => { setEyes(true); scheduleBlink(); }, 160);
+    }, 3000 + Math.random() * 2000);
+  }
+
+  function syncUITexts() {
+    const titleEl = $("[data-i18n-chat='title']");
+    if (titleEl && titleEl.firstChild) titleEl.firstChild.textContent = t("title") + " ";
+    $("[data-i18n-chat='subtitle']") && ($("[data-i18n-chat='subtitle']").textContent = t("subtitle"));
+    $("[data-i18n-chat='send']") && ($("[data-i18n-chat='send']").textContent = t("send"));
+    input && input.setAttribute("placeholder", t("placeholder"));
+    if (bubbleText) bubbleText.textContent = t("proactive");
+    renderChips();
+  }
+
+  function scrollBottom() { setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 0); }
+
   function addMsg(text, who = "bot") {
     const wrap = document.createElement("div");
-    wrap.className = who === "user" ? "flex justify-end" : "flex justify-start";
-    const bubble = document.createElement("div");
-    bubble.className =
-      who === "user"
-        ? "max-w-[85%] rounded-2xl px-3 py-2 text-sm bg-indigo-600 text-white"
-        : "max-w-[85%] rounded-2xl px-3 py-2 text-sm bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100";
-    bubble.innerText = text;
-    wrap.appendChild(bubble);
+    wrap.className = who === "user" ? "flex justify-end" : "flex items-end gap-2 justify-start";
+    if (who === "bot") {
+      const av = document.createElement("img"); av.src = KAIRO_IMG; av.className = "w-7 h-7 rounded-full shrink-0"; wrap.appendChild(av);
+    }
+    const bubbleEl = document.createElement("div");
+    bubbleEl.className = who === "user"
+      ? "max-w-[80%] rounded-2xl rounded-br-sm px-3 py-2 text-sm bg-indigo-600 text-white whitespace-pre-line"
+      : "max-w-[80%] rounded-2xl rounded-bl-sm px-3 py-2 text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 whitespace-pre-line";
+    bubbleEl.textContent = text;
+    wrap.appendChild(bubbleEl);
     messages.appendChild(wrap);
     scrollBottom();
+  }
+
+  function renderChips() {
+    if (!chipsEl) return;
+    chipsEl.innerHTML = "";
+    (CHIPS[LANG] || CHIPS.es).forEach((c) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "px-2.5 py-1 rounded-full border border-indigo-300 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300 text-xs hover:bg-indigo-50 dark:hover:bg-indigo-900/40 transition";
+      b.textContent = c.label;
+      b.addEventListener("click", () => handleIntent(c.id, true));
+      chipsEl.appendChild(b);
+    });
   }
 
   function showWelcome() {
     messages.innerHTML = "";
     addMsg(t("welcome"), "bot");
   }
-  showWelcome();
-  syncUITexts();
-  window.addEventListener("jm:lang", () => {
-    syncUITexts();
-    showWelcome();
-  });
+
+  // Maneja una intención local (chip o texto matcheado) -> SIN API
+  function handleIntent(id, echoUser) {
+    if (echoUser) {
+      const label = (CHIPS[LANG] || CHIPS.es).find((c) => c.id === id)?.label;
+      if (label) addMsg(label.replace(/^[^\s]+\s/, ""), "user");
+    }
+    const a = ans(id) || ans("fallbackHint");
+    setTimeout(() => { addMsg(a, "bot"); runLocalAction(id); }, 220);
+  }
+
+  // ===== Eventos =====
+  let opened = false;
+  // Bloquea el scroll del fondo solo en mobile (cuando el panel es fullscreen)
+  const lockScroll = (on) => {
+    if (window.matchMedia("(max-width: 639px)").matches) document.documentElement.style.overflow = on ? "hidden" : "";
+    else document.documentElement.style.overflow = "";
+  };
+  function openPanel() {
+    panel.classList.remove("hidden");
+    hideBubble();
+    if (dot) dot.classList.add("hidden");
+    opened = true;
+    lockScroll(true);
+    setTimeout(() => input?.focus(), 100);
+  }
+  function closePanel() { panel.classList.add("hidden"); lockScroll(false); }
+  function hideBubble() { bubble && bubble.classList.add("hidden"); }
 
   toggle.addEventListener("click", () => {
-    panel.classList.toggle("hidden");
-    if (!panel.classList.contains("hidden")) setTimeout(() => input?.focus(), 100);
+    if (panel.classList.contains("hidden")) openPanel();
+    else closePanel();
   });
-  closeBtn.addEventListener("click", () => panel.classList.add("hidden"));
+  closeBtn.addEventListener("click", closePanel);
+  bubble.addEventListener("click", (e) => { if (e.target !== bubbleX) openPanel(); });
+  bubbleX.addEventListener("click", (e) => { e.stopPropagation(); hideBubble(); sessionStorage.setItem("kairo_greeted", "1"); });
 
-  // Adjuntar PDF: aviso (no hay /api/upload en el backend actual)
-  attachBtn.addEventListener("click", () => fileInput.click());
-  fileInput.addEventListener("change", () => {
-    const f = fileInput.files?.[0];
-    if (!f) return;
-    addMsg(t("uploadNA"), "bot");
-    fileInput.value = "";
-  });
+  // Proactivo: una sola vez por sesión, sin ninguna llamada a la API
+  function maybeGreet() {
+    if (sessionStorage.getItem("kairo_greeted") === "1") return;
+    if (!panel.classList.contains("hidden")) return;
+    bubbleText.textContent = t("proactive");
+    bubble.classList.remove("hidden");
+    sessionStorage.setItem("kairo_greeted", "1");
+    setTimeout(() => { if (!opened) hideBubble(); }, 12000);
+  }
 
-  // Envío del mensaje -> POST /api/chat
+  // Envío de mensaje
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const q = (input.value || "").trim();
@@ -155,48 +277,39 @@
     addMsg(q, "user");
     input.value = "";
 
+    // 1) Intento local (sin API)
+    const intent = localIntent(q);
+    if (intent) { handleIntent(intent, false); return; }
+
+    // 2) Fallback a la API solo para texto libre no cubierto
     const thinking = document.createElement("div");
-    thinking.className = "text-[11px] text-slate-500 dark:text-slate-400 px-1";
+    thinking.className = "text-[11px] text-slate-400 px-1";
     thinking.textContent = t("writing");
-    messages.appendChild(thinking);
-    scrollBottom();
+    messages.appendChild(thinking); scrollBottom();
 
-    // Mensajes para el backend OpenAI
-    const system =
-      LANG === "en"
-        ? `You are a helpful portfolio assistant for Julian Molineris. Answer in English when LANG=en, else Spanish. Keep answers concise and helpful. If asked for contact, projects, CV, experience, or to schedule a meeting, provide short guidance and suggest the appropriate page or action. Include the user's TZ=${TZ} and sessionId=${sessionId} as context (do not expose them).`
-        : `Sos el asistente del portafolio de Julian Molineris. Respondé en español cuando LANG=es (sino en inglés). Sé conciso y útil. Si te piden contacto, proyectos, CV, experiencia o agendar una reunión, guiá con pasos cortos y sugerí la página o acción adecuada. Tené en cuenta TZ=${TZ} y sessionId=${sessionId} (no los expongas).`;
-
-    const payload = {
-      messages: [
-        { role: "system", content: system },
-        { role: "user", content: q }
-      ],
-      temperature: 0.7
-      // model: lo define el backend con OPENAI_MODEL o podés setearlo acá si querés
-    };
+    const system = isEN()
+      ? `You are Kairos, an AI assistant on Julian Molineris' portfolio. Kairos was created to make customer service for SMEs faster and more personal. Answer in English, concise and friendly. Help the visitor learn about Julian's projects (Venta Simple, Kairos, AgriSense), stack and contact. TZ=${TZ}.`
+      : `Sos Kairos, un asistente con IA en el portafolio de Julian Molineris. Kairos nació para hacer la atención al cliente de las pymes más ágil y personal. Respondé en español, conciso y amable. Ayudá al visitante a conocer los proyectos de Julian (Venta Simple, Kairos, AgriSense), su stack y su contacto. TZ=${TZ}.`;
 
     try {
       const res = await fetch(`${API_BASE}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: [{ role: "system", content: system }, { role: "user", content: q }], temperature: 0.6 })
       });
       const data = await res.json().catch(() => ({}));
       thinking.remove();
-
-      if (!res.ok || data.error) {
-        addMsg(LANG === "en" ? "Server error." : "Error del servidor.", "bot");
-        return;
-      }
-      addMsg(
-        data.reply ||
-          (LANG === "en" ? "I don’t have that answer yet." : "No tengo esa respuesta todavía."),
-        "bot"
-      );
+      if (!res.ok || data.error) { addMsg(t("srvErr"), "bot"); return; }
+      addMsg(data.reply || ans("fallbackHint"), "bot");
     } catch (err) {
       thinking.remove();
-      addMsg(LANG === "en" ? "Network error." : "Error de red.", "bot");
+      addMsg(t("netErr"), "bot");
     }
   });
+
+  // Init
+  showWelcome();
+  syncUITexts();
+  window.addEventListener("jm:lang", () => { syncUITexts(); showWelcome(); });
+  setTimeout(maybeGreet, 5000);
+  scheduleBlink();
 })();

@@ -3,92 +3,181 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>AgriSense — IoT para viveros — Julian Molineris</title>
-  <meta name="description" content="Monitoreo ambiental y riego automático con ESP32 y tablero web." />
+  <title>AgriSense — IoT para viveros | Julian Molineris</title>
+  <meta name="description" content="Monitoreo ambiental y riego automático con ESP32, MQTT y tablero web. App móvil Flutter." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <meta property="og:title" content="AgriSense — IoT para viveros — Julian Molineris" />
-  <meta property="og:description" content="Monitoreo ambiental y riego automático con ESP32 y tablero web." />
+  <link rel="canonical" href="https://julianmolineris.com/project-agrisense" />
+  <meta property="og:title" content="AgriSense — IoT para viveros | Julian Molineris" />
+  <meta property="og:description" content="Sensores ESP32 + MQTT + panel en tiempo real y alertas." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://julianmolineris.com/project-agrisense" />
+  <meta property="og:image" content="https://julianmolineris.com/assets/profile.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={ darkMode:'class' }</script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>body{font-family:'Inter',sans-serif} h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}</style>
   <script>
     const setTheme=(t)=>{try{localStorage.setItem('theme',t)}catch(e){};t==='dark'?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark')};
     (()=>{const s=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(s==='dark')document.documentElement.classList.add('dark')})();
+  </script>
+  <script>
+    const I18N = {
+      es: {
+        bc: 'AgriSense — IoT para viveros', title: 'AgriSense — IoT para viveros',
+        subtitle: 'Monitoreo ambiental y riego automático con ESP32 y tablero web en tiempo real.',
+        cta_pilot: 'Hablemos de un piloto', cta_github: '💻 GitHub',
+        m1l: '+ sensores', m2l: 'monitoreo', m3l: 'alertas + riego',
+        hero_card_sub: 'Riego automatizado por umbrales',
+        problem_h: 'Problema', problem_p: 'Riego manual ineficiente, sin histórico de variables y sin alertas tempranas.',
+        solution_h: 'Solución',
+        sol1: 'Nodos ESP32 con sensores (humedad/temperatura).',
+        sol2: 'Transporte MQTT; backend Python para ingesta.',
+        sol3: 'Time-series + panel Grafana; app Flutter.',
+        sol4: 'Automatización de riego con umbrales.',
+        results_h: 'Resultados', results_p: 'Ahorro de agua, mejor salud de plantas y decisiones con datos históricos.',
+        stack_h: 'Stack',
+        s1: 'ESP32 + sensores (DHT/Capacitivo)', s2: 'MQTT (Mosquitto/EMQX)', s3: 'Python (FastAPI/ingesta)', s4: 'Flutter (móvil)', s5: 'Time-series + Grafana',
+        final_h: '¿Lo querés en tu vivero?', final_p: 'Hago un piloto con tus umbrales y sensores.', final_cta: 'Hablar ahora'
+      },
+      en: {
+        bc: 'AgriSense — IoT for nurseries', title: 'AgriSense — IoT for nurseries',
+        subtitle: 'Environmental monitoring and automated irrigation with ESP32 and a real-time web dashboard.',
+        cta_pilot: 'Let’s talk about a pilot', cta_github: '💻 GitHub',
+        m1l: '+ sensors', m2l: 'monitoring', m3l: 'alerts + irrigation',
+        hero_card_sub: 'Threshold-based automated irrigation',
+        problem_h: 'Problem', problem_p: 'Inefficient manual irrigation, no history of variables and no early alerts.',
+        solution_h: 'Solution',
+        sol1: 'ESP32 nodes with sensors (humidity/temperature).',
+        sol2: 'MQTT transport; Python backend for ingestion.',
+        sol3: 'Time-series + Grafana dashboard; Flutter app.',
+        sol4: 'Threshold-based irrigation automation.',
+        results_h: 'Results', results_p: 'Water savings, healthier plants and decisions backed by historical data.',
+        stack_h: 'Stack',
+        s1: 'ESP32 + sensors (DHT/capacitive)', s2: 'MQTT (Mosquitto/EMQX)', s3: 'Python (FastAPI/ingestion)', s4: 'Flutter (mobile)', s5: 'Time-series + Grafana',
+        final_h: 'Want it in your nursery?', final_p: 'I’ll set up a pilot with your thresholds and sensors.', final_cta: 'Talk now'
+      }
+    };
+    function setLang(l){
+      localStorage.lang = l;
+      const d = I18N[l] || I18N.es;
+      document.querySelectorAll('[data-i18n]').forEach(e=>{ const k=e.dataset.i18n; if(d[k]!=null) e.innerHTML=d[k]; });
+      document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('opacity-60', b.dataset.lang!==l));
+      document.documentElement.lang = l;
+      window.dispatchEvent(new CustomEvent('jm:lang',{detail:{lang:l}}));
+    }
+    window.addEventListener('DOMContentLoaded', ()=> setLang(localStorage.lang || 'es'));
   </script>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
 <header class="border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 backdrop-blur-md dark:bg-slate-900/60 sticky top-0 z-40">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a class="flex items-center gap-3 group" href="index.html">
-      <img src="assets/favicon.svg" alt="JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
+      <img src="assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
       <span class="font-semibold text-lg">Julian Molineris</span>
     </a>
     <div class="flex items-center gap-2">
-      <a href="CV_Julian_Molineris.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">Descargar CV</a>
+      <a href="CV_Julian_Molineris.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
       <button class="px-3 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-xs hover:bg-slate-100 dark:hover:bg-slate-800" onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')">Tema</button>
+      <div class="flex items-center gap-1 text-xs ml-1">
+        <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 opacity-60 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
     </div>
   </div>
 </header>
 
 <section class="bg-gradient-to-br from-indigo-700 via-purple-600 to-cyan-500 text-white">
-  <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-[1fr,360px] gap-10 items-center">
+  <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-[1fr,380px] gap-10 items-center">
     <div>
-      <nav class="text-indigo-100/80 text-sm mb-3"><a href="index.html" class="hover:underline">Inicio</a> / <span>AgriSense — IoT para viveros</span></nav>
-      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">AgriSense — IoT para viveros</h1>
-      <p class="mt-3 text-indigo-100/90">Monitoreo ambiental y riego automático con ESP32 y tablero web.</p>
-      <div class="mt-5 flex gap-2 flex-wrap"><span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium">Flutter</span>
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium">Python</span>
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium">ESP32</span>
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium">MQTT</span>
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium">Timeseries</span>
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium">Grafana</span></div>
-      <div class="mt-6 flex gap-3"><a href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition">Demo (próximamente)</a><a href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition">Esquema IoT</a></div>
+      <nav class="text-indigo-100/80 text-sm mb-3"><a href="index.html" class="hover:underline">Inicio</a> / <span data-i18n="bc">AgriSense — IoT para viveros</span></nav>
+      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="title">AgriSense — IoT para viveros</h1>
+      <p class="mt-3 text-indigo-100/90" data-i18n="subtitle">Monitoreo ambiental y riego automático con ESP32 y tablero web en tiempo real.</p>
+
+      <div class="mt-5 flex gap-2 flex-wrap">
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">ESP32</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">MQTT</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Python (backend)</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Flutter (móvil)</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Time-series</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Grafana</span>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 text-white text-sm font-semibold hover:bg-white/30 transition" data-i18n="cta_pilot">Hablemos de un piloto</a>
+        <a href="https://github.com/molinerisit" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 text-white text-sm font-semibold hover:bg-white/30 transition" data-i18n="cta_github">💻 GitHub</a>
+      </div>
+
+      <dl class="mt-6 grid grid-cols-3 max-w-md gap-3 text-center text-indigo-50/90">
+        <div><dt class="text-2xl font-extrabold">ESP32</dt><dd class="text-xs" data-i18n="m1l">+ sensores</dd></div>
+        <div><dt class="text-2xl font-extrabold">24/7</dt><dd class="text-xs" data-i18n="m2l">monitoreo</dd></div>
+        <div><dt class="text-2xl font-extrabold">Realtime</dt><dd class="text-xs" data-i18n="m3l">alertas + riego</dd></div>
+      </dl>
     </div>
+
     <div class="justify-self-center md:justify-self-end">
-      <img src="assets/project-agrisense.jpg" alt="AgriSense — IoT para viveros hero" class="w-72 h-72 object-cover rounded-xl ring-4 ring-white/30 shadow-2xl"/>
+      <div class="w-72 h-72 rounded-2xl bg-white/10 ring-4 ring-white/20 shadow-2xl flex flex-col items-center justify-center gap-2 backdrop-blur-sm">
+        <span class="text-7xl">🌱</span>
+        <span class="text-sm text-indigo-50/90 font-medium">ESP32 · MQTT · Flutter</span>
+        <span class="text-xs text-indigo-100/70" data-i18n="hero_card_sub">Riego automatizado por umbrales</span>
+      </div>
     </div>
   </div>
 </section>
+
 <main class="max-w-6xl mx-auto px-4 py-12 space-y-10">
   <section class="grid md:grid-cols-3 gap-6">
-    <article class="md:col-span-1 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-      <h2 class="text-xl font-bold mb-2">Problema</h2>
-      <p class="text-slate-700 dark:text-slate-300">Riego manual ineficiente y falta de datos históricos para decidir.</p>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="problem_h">Problema</h2>
+      <p class="text-slate-700 dark:text-slate-300" data-i18n="problem_p">Riego manual ineficiente, sin histórico de variables y sin alertas tempranas.</p>
     </article>
-    <article class="md:col-span-1 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-      <h2 class="text-xl font-bold mb-2">Solución</h2>
-      <p class="text-slate-700 dark:text-slate-300">Sensores de humedad/temperatura con ESP32, envío MQTT y backend Python; app móvil Flutter.</p>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="solution_h">Solución</h2>
+      <ul class="list-disc ml-5 space-y-1 text-slate-700 dark:text-slate-300">
+        <li data-i18n="sol1">Nodos ESP32 con sensores (humedad/temperatura).</li>
+        <li data-i18n="sol2">Transporte MQTT; backend Python para ingesta.</li>
+        <li data-i18n="sol3">Time-series + panel Grafana; app Flutter.</li>
+        <li data-i18n="sol4">Automatización de riego con umbrales.</li>
+      </ul>
     </article>
-    <article class="md:col-span-1 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-      <h2 class="text-xl font-bold mb-2">Resultados</h2>
-      <p class="text-slate-700 dark:text-slate-300">Ahorro de agua y mejor salud de plantas; alertas push y panel en tiempo real.</p>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="results_h">Resultados</h2>
+      <p class="text-slate-700 dark:text-slate-300" data-i18n="results_p">Ahorro de agua, mejor salud de plantas y decisiones con datos históricos.</p>
     </article>
   </section>
+
   <section>
-    <h2 class="text-2xl font-bold mb-4">Galería</h2>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="aspect-video rounded-xl bg-slate-200 dark:bg-slate-800 grid place-items-center text-slate-500">Screenshot 1</div>
-      <div class="aspect-video rounded-xl bg-slate-200 dark:bg-slate-800 grid place-items-center text-slate-500">Screenshot 2</div>
-      <div class="aspect-video rounded-xl bg-slate-200 dark:bg-slate-800 grid place-items-center text-slate-500">Screenshot 3</div>
+    <h2 class="text-2xl font-bold mb-4" data-i18n="stack_h">Stack</h2>
+    <ul class="list-disc ml-6 space-y-1 text-slate-700 dark:text-slate-300">
+      <li data-i18n="s1">ESP32 + sensores (DHT/Capacitivo)</li>
+      <li data-i18n="s2">MQTT (Mosquitto/EMQX)</li>
+      <li data-i18n="s3">Python (FastAPI/ingesta)</li>
+      <li data-i18n="s4">Flutter (móvil)</li>
+      <li data-i18n="s5">Time-series + Grafana</li>
+    </ul>
+  </section>
+
+  <section class="mt-8 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+    <div class="flex flex-wrap items-center gap-3 justify-between">
+      <div>
+        <h3 class="font-bold text-lg" data-i18n="final_h">¿Lo querés en tu vivero?</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400" data-i18n="final_p">Hago un piloto con tus umbrales y sensores.</p>
+      </div>
+      <a href="#chat" onclick="document.querySelector('#jm-chat-toggle')?.click()" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500" data-i18n="final_cta">Hablar ahora</a>
     </div>
   </section>
-  <section>
-    <h2 class="text-2xl font-bold mb-4">Stack</h2>
-    <ul class="list-disc ml-6 space-y-1 text-slate-700 dark:text-slate-300"><li>Flutter</li><li>Python</li><li>ESP32</li><li>MQTT</li><li>Timeseries</li><li>Grafana</li></ul>
-  </section>
 </main>
+
 <footer class="mt-16 border-t border-slate-200 dark:border-slate-700">
   <div class="max-w-6xl mx-auto px-4 py-10 grid sm:grid-cols-[1fr,auto] gap-6 items-center">
-    <div class="text-sm text-slate-600 dark:text-slate-400">© 2025 Julian Molineris.</div>
+    <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="yr"></span> Julian Molineris.</div>
     <div class="justify-self-center sm:justify-self-end text-center">
       <img src="assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
     </div>
   </div>
 </footer>
-<script>window.JM_API_BASE = window.JM_API_BASE || "http://localhost:8787";</script>
-<script src="jm-chat.js"></script>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>window.JM_API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";</script>
+<script src="jm-chat.js?v=4"></script>
 </body>
 </html>

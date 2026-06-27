@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Axiia / Kairos — Asistentes con IA para pymes | Julian Molineris</title>
+  <meta name="description" content="Axiia: plataforma SaaS de asistentes con IA que diseñé y construí. Kairos es el agente que atiende, vende y responde 24/7 por web y WhatsApp. Demo en vivo en getaxiia.com." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://julianmolineris.com/project-kairos-ia" />
+  <meta property="og:title" content="Axiia / Kairos — Asistentes con IA | Julian Molineris" />
+  <meta property="og:description" content="Plataforma SaaS de asistentes con IA (agente: Kairos), por web y WhatsApp. Demo en vivo en getaxiia.com." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://julianmolineris.com/project-kairos-ia" />
+  <meta property="og:image" content="https://julianmolineris.com/assets/axiia/axiia-hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={ darkMode:'class' }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>body{font-family:'Inter',sans-serif} h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}</style>
+  <script>
+    const setTheme=(t)=>{try{localStorage.setItem('theme',t)}catch(e){};t==='dark'?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark')};
+    (()=>{const s=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(s==='dark')document.documentElement.classList.add('dark')})();
+  </script>
+  <script>
+    const I18N = {
+      es: {
+        bc: 'Axiia / Kairos', title: 'Axiia — Asistentes con IA para pymes',
+        subtitle: 'Axiia es la <strong>plataforma SaaS</strong> de asistentes con IA que diseñé y construí; <strong>Kairos</strong> es el agente que atiende, vende y responde 24/7 por <strong>web y WhatsApp</strong>. Nació para hacer la atención al cliente de las pymes más ágil y personal.',
+        cta_demo: '🌐 Ver Axiia en vivo', cta_try: '💬 Probá a Kairos acá', cta_github: '💻 GitHub',
+        gallery_h: 'Capturas reales', cap_hero: 'Axiia — el asistente Kairos atiende por web y WhatsApp', cap_chat: 'Kairos resolviendo una reserva con respuestas rápidas',
+        m1l: 'respuesta automática', m2l: 'siempre disponible', m3l: 'atención personal',
+        try_note: '👉 ¿Ves el botón de chat abajo a la derecha? <strong>Ese soy yo.</strong> Tocalo y preguntame lo que quieras.',
+        problem_h: 'Problema',
+        problem_p: 'Las pymes pierden clientes por respuestas lentas, atención impersonal y un soporte saturado de preguntas repetidas.',
+        solution_h: 'Solución',
+        sol1: '<strong>Panel web</strong> para configurar el asistente sin tocar código.',
+        sol2: 'Se suma a tu sitio como <strong>widget</strong> (un clic) y atiende también por <strong>WhatsApp</strong>.',
+        sol3: '<strong>3 presets listos</strong>: Secretario (reservas/turnos), Vendedor (ventas) y Soporte (posventa).',
+        sol4: '<strong>Reglas de negocio</strong> configurables, memoria operativa y <strong>costo de IA bajo control</strong>.',
+        flow_h: 'Cómo funciona',
+        f1: 'El cliente escribe por la web o WhatsApp, en lenguaje natural.',
+        f2: 'Kairos aplica las reglas del negocio y los datos para entender qué necesita.',
+        f3: 'Responde al instante, con tono personal y la siguiente acción.',
+        stack_h: 'Stack',
+        s1: 'Panel: Flutter Web · Backend: Node.js / Express',
+        s2: 'PostgreSQL + JSONB · Redis (cache y jobs)',
+        s3: 'WhatsApp Business API (Meta) + canal web (widget embebible)',
+        s4: 'LLM con capa de reglas y respuestas para minimizar el costo de API',
+        final_h: '¿Querés un asistente así en tu negocio?',
+        final_p: 'Lo adapto a tu negocio: proactivo, cercano y con el consumo de API bajo control.',
+        final_cta: 'Hablar con Julian'
+      },
+      en: {
+        bc: 'Axiia / Kairos', title: 'Axiia — AI assistants for SMEs',
+        subtitle: 'Axiia is the <strong>AI-assistant SaaS platform</strong> I designed and built; <strong>Kairos</strong> is the agent that serves, sells and replies 24/7 over <strong>web and WhatsApp</strong>. Born to make SME customer service faster and more personal.',
+        cta_demo: '🌐 See Axiia live', cta_try: '💬 Try Kairos here', cta_github: '💻 GitHub',
+        gallery_h: 'Real screenshots', cap_hero: 'Axiia — the Kairos assistant serves on web and WhatsApp', cap_chat: 'Kairos handling a booking with quick replies',
+        m1l: 'automatic reply', m2l: 'always available', m3l: 'personal touch',
+        try_note: '👉 See the chat button at the bottom right? <strong>That\'s me.</strong> Tap it and ask me anything.',
+        problem_h: 'Problem',
+        problem_p: 'SMEs lose customers to slow replies, impersonal service, and support flooded with repeat questions.',
+        solution_h: 'Solution',
+        sol1: '<strong>Web dashboard</strong> to configure the assistant without touching code.',
+        sol2: 'Adds to your site as a <strong>widget</strong> (one click) and also serves over <strong>WhatsApp</strong>.',
+        sol3: '<strong>3 ready presets</strong>: Secretary (bookings), Sales and Support (after-sales).',
+        sol4: 'Configurable <strong>business rules</strong>, operational memory and <strong>AI cost under control</strong>.',
+        flow_h: 'How it works',
+        f1: 'The customer writes via web or WhatsApp, in natural language.',
+        f2: 'Kairos applies the business rules and data to understand what they need.',
+        f3: 'Replies instantly, with a personal tone and the next action.',
+        stack_h: 'Stack',
+        s1: 'Dashboard: Flutter Web · Backend: Node.js / Express',
+        s2: 'PostgreSQL + JSONB · Redis (cache and jobs)',
+        s3: 'WhatsApp Business API (Meta) + web channel (embeddable widget)',
+        s4: 'LLM with a rules/answers layer to minimize API cost',
+        final_h: 'Want an assistant like this in your business?',
+        final_p: 'I tailor it to your business: proactive, personal, with API spend under control.',
+        final_cta: 'Talk to Julian'
+      }
+    };
+    function setLang(l){
+      localStorage.lang = l;
+      const d = I18N[l] || I18N.es;
+      document.querySelectorAll('[data-i18n]').forEach(e=>{ const k=e.dataset.i18n; if(d[k]!=null) e.innerHTML=d[k]; });
+      document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('opacity-60', b.dataset.lang!==l));
+      document.documentElement.lang = l;
+      window.dispatchEvent(new CustomEvent('jm:lang',{detail:{lang:l}}));
+    }
+    window.addEventListener('DOMContentLoaded', ()=> setLang(localStorage.lang || 'es'));
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
+<header class="border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 backdrop-blur-md dark:bg-slate-900/60 sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a class="flex items-center gap-3 group" href="index.html">
+      <img src="assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
+      <span class="font-semibold text-lg">Julian Molineris</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <a href="CV_Julian_Molineris.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
+      <button class="px-3 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-xs hover:bg-slate-100 dark:hover:bg-slate-800" onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')">Tema</button>
+      <div class="flex items-center gap-1 text-xs ml-1">
+        <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 opacity-60 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="bg-gradient-to-br from-indigo-700 via-purple-600 to-cyan-500 text-white">
+  <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-[1fr,380px] gap-10 items-center">
+    <div>
+      <nav class="text-indigo-100/80 text-sm mb-3"><a href="index.html" class="hover:underline">Inicio</a> / <span data-i18n="bc">Axiia / Kairos</span></nav>
+      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="title">Axiia — Asistentes con IA para pymes</h1>
+      <p class="mt-3 text-indigo-100/90 text-lg" data-i18n="subtitle">Axiia es la <strong>plataforma SaaS</strong> de asistentes con IA que diseñé y construí; <strong>Kairos</strong> es el agente que atiende, vende y responde 24/7 por <strong>web y WhatsApp</strong>. Nació para hacer la atención al cliente de las pymes más ágil y personal.</p>
+
+      <div class="mt-5 flex gap-2 flex-wrap">
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">IA / LLM</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Flutter Web</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Node.js</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">PostgreSQL</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Redis</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">WhatsApp Business API</span>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="https://www.getaxiia.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-400 text-indigo-900 text-sm font-bold hover:bg-cyan-300 transition" data-i18n="cta_demo">🌐 Ver Axiia en vivo</a>
+        <button onclick="document.querySelector('#jm-chat-toggle')?.click()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 text-white text-sm font-semibold hover:bg-white/30 transition" data-i18n="cta_try">💬 Probá a Kairos acá</button>
+        <a href="https://github.com/molinerisit" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 text-white text-sm font-semibold hover:bg-white/30 transition" data-i18n="cta_github">💻 GitHub</a>
+      </div>
+
+      <dl class="mt-6 grid grid-cols-3 max-w-md gap-3 text-center text-indigo-50/90">
+        <div><dt class="text-2xl font-extrabold">~1s</dt><dd class="text-xs" data-i18n="m1l">respuesta automática</dd></div>
+        <div><dt class="text-2xl font-extrabold">24/7</dt><dd class="text-xs" data-i18n="m2l">siempre disponible</dd></div>
+        <div><dt class="text-2xl font-extrabold">💜</dt><dd class="text-xs" data-i18n="m3l">atención personal</dd></div>
+      </dl>
+    </div>
+
+    <div class="justify-self-center md:justify-self-end">
+      <div class="relative w-64 h-64">
+        <img id="kairos-hero-open" src="assets/kairo.png" alt="Kairos — asistente conversacional" class="absolute inset-0 w-64 h-64 object-contain drop-shadow-2xl"/>
+        <img id="kairos-hero-closed" src="assets/kairo-blink.png" alt="" class="absolute inset-0 w-64 h-64 object-contain drop-shadow-2xl invisible"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 py-12 space-y-10">
+  <!-- Probalo aquí -->
+  <section class="p-5 rounded-2xl border border-cyan-300 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-900/20">
+    <p class="text-slate-700 dark:text-slate-200" data-i18n="try_note">👉 ¿Ves el botón de chat abajo a la derecha? <strong>Ese soy yo.</strong> Tocalo y preguntame lo que quieras.</p>
+  </section>
+
+  <!-- Galería real -->
+  <section>
+    <h2 class="text-2xl font-bold mb-4" data-i18n="gallery_h">Capturas reales</h2>
+    <div class="grid md:grid-cols-2 gap-4" id="gallery">
+      <figure class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white">
+        <a href="assets/axiia/axiia-hero.jpg" class="group block"><img loading="lazy" src="assets/axiia/axiia-hero.jpg" alt="Landing de Axiia con el asistente Kairos" class="w-full object-cover group-hover:scale-105 transition"/></a>
+        <figcaption class="px-3 py-2 text-xs text-slate-500 dark:text-slate-400" data-i18n="cap_hero">Axiia — el asistente Kairos atiende por web y WhatsApp</figcaption>
+      </figure>
+      <figure class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-[#0a1530] flex flex-col justify-center">
+        <a href="assets/axiia/axiia-chat.jpg" class="group block p-4"><img loading="lazy" src="assets/axiia/axiia-chat.jpg" alt="Kairos resolviendo una reserva" class="w-full object-contain rounded-lg group-hover:scale-105 transition"/></a>
+        <figcaption class="px-3 py-2 text-xs text-slate-400" data-i18n="cap_chat">Kairos resolviendo una reserva con respuestas rápidas</figcaption>
+      </figure>
+    </div>
+    <dialog id="lb" class="backdrop:bg-black/70 p-0 rounded-xl overflow-hidden bg-white"><img id="lbimg" alt="Vista ampliada" class="max-w-[92vw] max-h-[88vh]"/></dialog>
+    <script>
+      const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+      document.getElementById('gallery').addEventListener('click', e=>{ const a=e.target.closest('a'); if(!a) return; e.preventDefault(); lbimg.src=a.getAttribute('href'); lb.showModal(); });
+      lb.addEventListener('click', ()=>lb.close());
+    </script>
+  </section>
+
+  <section class="grid md:grid-cols-3 gap-6">
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="problem_h">Problema</h2>
+      <p class="text-slate-700 dark:text-slate-300" data-i18n="problem_p">Las pymes pierden clientes por respuestas lentas, atención impersonal y un soporte saturado de preguntas repetidas.</p>
+    </article>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="solution_h">Solución</h2>
+      <ul class="list-disc ml-5 space-y-1 text-slate-700 dark:text-slate-300">
+        <li data-i18n="sol1">Atiende en <strong>lenguaje natural</strong>, 24/7 y con tono cercano.</li>
+        <li data-i18n="sol2">Responde dudas frecuentes y consulta datos del negocio en tiempo real.</li>
+        <li data-i18n="sol3">Respuestas locales para lo común; LLM solo cuando hace falta (control de costos).</li>
+        <li data-i18n="sol4">Escala a una persona cuando el caso lo necesita.</li>
+      </ul>
+    </article>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="flow_h">Cómo funciona</h2>
+      <ol class="list-decimal ml-5 space-y-1 text-slate-700 dark:text-slate-300">
+        <li data-i18n="f1">El cliente pregunta en lenguaje natural.</li>
+        <li data-i18n="f2">Kairos interpreta la intención y busca la respuesta (reglas o datos del negocio).</li>
+        <li data-i18n="f3">Responde al instante, con tono personal y la siguiente acción.</li>
+      </ol>
+    </article>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4" data-i18n="stack_h">Stack</h2>
+    <ul class="list-disc ml-6 space-y-1 text-slate-700 dark:text-slate-300">
+      <li data-i18n="s1">Node.js + integración LLM (OpenAI)</li>
+      <li data-i18n="s2">Diseño de prompts e intenciones (intent routing)</li>
+      <li data-i18n="s3">Capa de respuestas locales para minimizar costo de API</li>
+      <li data-i18n="s4">Integración REST con el negocio · Web y WhatsApp</li>
+    </ul>
+  </section>
+
+  <section class="mt-8 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+    <div class="flex flex-wrap items-center gap-3 justify-between">
+      <div>
+        <h3 class="font-bold text-lg" data-i18n="final_h">¿Querés un Kairos para tu pyme?</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400" data-i18n="final_p">Lo adapto a tu negocio: proactivo, cercano y con el consumo de API bajo control.</p>
+      </div>
+      <a href="index.html#contacto" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500" data-i18n="final_cta">Hablar con Julian</a>
+    </div>
+  </section>
+</main>
+
+<footer class="mt-16 border-t border-slate-200 dark:border-slate-700">
+  <div class="max-w-6xl mx-auto px-4 py-10 grid sm:grid-cols-[1fr,auto] gap-6 items-center">
+    <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="yr"></span> Julian Molineris.</div>
+    <div class="justify-self-center sm:justify-self-end text-center">
+      <img src="assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>window.JM_API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";</script>
+<script src="jm-chat.js?v=4"></script>
+<!-- Parpadeo del mascota Kairos en el hero -->
+<script>
+(() => {
+  const o = document.getElementById('kairos-hero-open'), c = document.getElementById('kairos-hero-closed');
+  if (!o || !c) return;
+  function blink() {
+    setTimeout(() => {
+      o.classList.add('invisible'); c.classList.remove('invisible');
+      setTimeout(() => { o.classList.remove('invisible'); c.classList.add('invisible'); blink(); }, 160);
+    }, 3000 + Math.random() * 2000);
+  }
+  blink();
+})();
+</script>
+</body>
+</html>

@@ -265,14 +265,14 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script>
     const $ = s => document.querySelector(s);
-    const stateKey = 'cv_state_julian_v3';
+    const stateKey = 'cv_state_julian_v5';
 
     const defaults = {
       // === TU INFO PRE-CARGADA ===
       name: 'Julian Molineris',
-      title: 'Desarrollador Full Stack | Tester QA',
+      title: 'Full Stack Developer · Product Builder',
       location: 'Rosario, Argentina',
-      availability: 'Disponibilidad: Full-time / Freelance',
+      availability: 'Disponible para roles remotos full-time',
       photoDataUrl: '', // si está vacío usa me.jpg del proyecto
       contact: [
         { ico: '📞', txt: '+54 341-2527455' },
@@ -281,24 +281,22 @@
         { ico: '💻', txt: 'github.com/molinerisit' },
         { ico: '🔗', txt: 'linkedin.com/in/julianmolineris' }
       ],
-      about: 'Profesional proactivo y autónomo con sólida formación en **desarrollo de software**, **testing QA** y **habilidades blandas**. Especializado en crear soluciones tecnológicas eficientes para PYMEs que optimizan la operatividad y mejoran la experiencia del cliente. He desarrollado sistemas de gestión, bots y aplicaciones web/móviles usando Java y Next.js.',
-      skillsCsv: 'Selenium, Postman, JMeter, Node.js, React, Java, MySQL, Flutter, Python, Azure, Jira',
+      about: 'Desarrollador **Full Stack orientado a producto**, con más de 3 años creando soluciones reales para comercios y PYMEs. Construí sistemas end-to-end con **React, Next.js, Node.js, TypeScript, Flutter y Supabase**: POS offline-first, paneles web, apps móviles, integraciones con Mercado Pago y WhatsApp Business API, e **IA aplicada a procesos de negocio**. Busco oportunidades remotas donde aportar autonomía, criterio de producto y software que se usa en producción.',
+      skillsCsv: 'React, Next.js, Node.js, TypeScript, PostgreSQL, Supabase, Flutter, Electron, Python, IA/LLM, REST APIs, Selenium, Postman, Jira',
       education: [
-        { "bold": "Ingeniería en Sistemas de Información", "small": "Universidad Tecnológica Nacional (UTN) – Cursando" },
-        { "bold": "Testing QA y Automation – 300h", "small": "Educación IT" },
-        { "bold": "Soporte en Tecnologías de la Información – 360h", "small": "Google / Coursera" },
-        { "bold": "Ciberseguridad – 360h", "small": "Cisco Networking Academy" },
-        { "bold": "Testing QA Manual y Automatizado – 30h", "small": "Oracle Next Education (ONE)" },
+        { "bold": "Licenciatura en Informática", "small": "Universidad Siglo 21 – Estudiante avanzado (3er año)" },
         { "bold": "Desarrollo Web Full Stack MERN – 200h", "small": "Platzi" },
-        { "bold": "Bases de Datos Relacionales con MySQL – 50h", "small": "Udemy" }
+        { "bold": "IA aplicada a procesos de negocio", "small": "Udemy · 2024" },
+        { "bold": "Testing QA & Automation – 300h", "small": "Educación IT" },
+        { "bold": "Soporte IT & Ciberseguridad – 720h", "small": "Google / Cisco" }
       ],
       experience: [
         { "role": "Desarrollador de Software – Freelance e Independiente", "meta": "2022 – Actualidad", "bullets": [
           "Implementación end-to-end: arquitectura, programación, hardware y despliegue en la nube.",
           "Sistema integral para comercios: stock, ventas, tickets y panel online.",
-          "Bot para WhatsApp: consultas de stock, vencimientos y asistencia a clientes.",
+          "Kairos: plataforma de asistentes con IA para atención al cliente (web y WhatsApp), configurable por reglas de negocio.",
           "App para viveros (Flutter + Python) para sensores y riego automatizado.",
-          "Integraciones con APIs (Mercado Libre) y desarrollo de landings."
+          "Integraciones con APIs externas (Mercado Pago, Meta/WhatsApp, Brave) e IA aplicada al análisis de datos del negocio."
         ]},
         { "role": "Tester QA – uTest (proyectos pagos)", "meta": "2022 – 2023", "bullets": [
           "Testing funcional y manual en e-commerce.",
@@ -307,14 +305,14 @@
         ]},
         { "role": "Encargado de Operaciones y Tecnología – La Macelleria", "meta": "Dic 2019 – Sep 2025 · Rosario, SF", "bullets": [
           "Gestión y capacitación de equipo de 5 personas en sistemas digitales.",
-          "Sistema interno (Java / Next.js) para stock, ventas y tickets.",
+          "Sistema interno (Node.js / Next.js) para stock, ventas y tickets.",
           "Optimización de procesos y apertura de nuevo local."
         ]}
       ],
       projects: [
-        { "bold": "Sistema de gestión para comercio:", "text": "Solución integral con sincronización en la nube entre puntos de venta y un panel web." },
-        { "bold": "Bot de WhatsApp:", "text": "Reglas de negocio + base de datos para control de stock y compras a proveedores." },
-        { "bold": "App para viveros:", "text": "Prototipo IoT (ESP32 + backend) para monitoreo y riego automatizado." }
+        { "bold": "Venta Simple (SaaS, en producción):", "text": "POS offline-first + panel web + app móvil + facturación electrónica. Integra Mercado Pago, WhatsApp API e IA sobre los datos. Demo en vivo en ventasimple.cloud." },
+        { "bold": "Axiia / Kairos (asistentes con IA):", "text": "Plataforma SaaS de asistentes para atención al cliente, ventas, reservas y posventa; vía WhatsApp y widget web embebible, con reglas configurables." },
+        { "bold": "IoT — Trazabilidad de heladeras:", "text": "Monitoreo de temperatura con ESP32, alertas por rango (ej. 0–5 °C) e histórico; en uso hace 1 año en La Macelleria. También IoT para viveros." }
       ],
       site: 'julianmolineris.com',
       github: 'github.com/molinerisit',
@@ -386,7 +384,7 @@
       vqr.style.height = (s.qrSize||100) + 'px';
 
       // Foto
-      $('#v_photo').src = s.photoDataUrl || 'me.jpg';
+      $('#v_photo').src = s.photoDataUrl || 'assets/profile.jpg';
 
       // Contacto
       const ctn = $('#v_contact'); ctn.innerHTML='';

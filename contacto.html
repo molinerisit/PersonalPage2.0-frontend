@@ -26,7 +26,7 @@
     </form>
   </main>
 <script>
-const API = "http://localhost:8787";
+const API = "https://personalpage20-backend-production.up.railway.app";
 document.getElementById('f').addEventListener('submit', async (e) => {
   e.preventDefault();
   const fd = new FormData(e.target);
@@ -44,7 +44,7 @@ document.getElementById('f').addEventListener('submit', async (e) => {
   else { s.textContent = 'Error: ' + (data.error || 'intentalo de nuevo'); }
 });
 </script>
-<script>window.JM_API_BASE = window.JM_API_BASE || "http://localhost:8787";</script>
-<script src="jm-chat.js"></script>
+<script>window.JM_API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";</script>
+<script src="jm-chat.js?v=4"></script>
 </body>
 </html>
