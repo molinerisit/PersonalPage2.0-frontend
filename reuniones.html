@@ -24,7 +24,7 @@
     </form>
   </main>
 <script>
-const API = "https://personalpage20-backend-production.up.railway.app";
+const API = "https://portfolio-backend-production-4e0d.up.railway.app";
 document.getElementById('m').addEventListener('submit', async (e) => {
   e.preventDefault();
   const fd = new FormData(e.target);
@@ -36,6 +36,6 @@ document.getElementById('m').addEventListener('submit', async (e) => {
   if (data.ok) { s.textContent = 'Solicitud enviada ✅ (revisá tu email, llega la invitación)'; e.target.reset(); } else { s.textContent = 'Error: ' + (data.error || 'intentalo de nuevo'); }
 });
 </script>
-<script>window.JM_API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";</script>
+<script>window.JM_API_BASE = window.JM_API_BASE || "https://portfolio-backend-production-4e0d.up.railway.app";</script>
 <script src="jm-chat.js?v=4"></script>
 </body></html>

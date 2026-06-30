@@ -3,7 +3,7 @@
    Proactivo + respuestas locales (sin API); fallback a /api/chat solo para texto libre.
    Diseñado para NO disparar consumo de API: saludo, chips e intenciones comunes se resuelven en el cliente. */
 (() => {
-  const API_BASE = window.JM_API_BASE || "https://personalpage20-backend-production.up.railway.app";
+  const API_BASE = window.JM_API_BASE || "https://portfolio-backend-production-4e0d.up.railway.app";
   const KAIRO_IMG = "assets/kairo.png";         // ojos abiertos
   const KAIRO_BLINK = "assets/kairo-blink.png"; // ojos cerrados (parpadeo)
   const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Argentina/Cordoba";
@@ -69,7 +69,7 @@
     es: {
       projects: "Julian tiene 3 proyectos destacados:\n🛒 Venta Simple — SaaS de gestión EN PRODUCCIÓN\n💬 Kairos — asistente con IA (¡soy yo!)\n🌱 AgriSense — IoT para viveros\n¿Cuál te muestro en detalle?",
       ventasimple: "Venta Simple es el proyecto estrella: POS de escritorio offline-first + panel web + app móvil + facturación AFIP/ARCA. Está en producción con comercios reales.\n👉 Demo en vivo: https://ventasimple.cloud",
-      stack: "Stack principal de Julian:\n• Backend: Node.js, TypeScript, Python (FastAPI)\n• Frontend/Mobile: React, Next.js, Flutter\n• Datos/Cloud: Supabase/Postgres, Vercel, Railway\n• IA aplicada a procesos de negocio (análisis de datos y decisiones)\n• QA: Selenium, Postman, Jira",
+      stack: "Stack principal de Julian:\n• Backend: Node.js, TypeScript, Python (FastAPI)\n• Frontend/Mobile: React, Next.js, apps móviles\n• Datos/Cloud: Supabase/Postgres, Vercel, Railway\n• IA aplicada a procesos de negocio (análisis de datos y decisiones)\n• QA: Selenium, Postman, Jira",
       contact: "Podés contactar a Julian por:\n✉️ julianmolinerisit@gmail.com\n💼 linkedin.com/in/julianmolineris\n💻 github.com/molinerisit\nO completá el formulario de contacto en la página.",
       cv: "¡Listo! Te abro el CV para descargar 👇",
       meeting: "Para coordinar una reunión, usá la página de agenda y elegí fecha y hora. Te llega la invitación por email.\n👉 reuniones.html",
@@ -79,7 +79,7 @@
     en: {
       projects: "Julian has 3 featured projects:\n🛒 Venta Simple — management SaaS IN PRODUCTION\n💬 Kairos — AI assistant (that's me!)\n🌱 AgriSense — IoT for nurseries\nWhich one should I show you?",
       ventasimple: "Venta Simple is the flagship: offline-first desktop POS + web dashboard + mobile app + AFIP/ARCA invoicing. It's in production with real businesses.\n👉 Live demo: https://ventasimple.cloud",
-      stack: "Julian's main stack:\n• Backend: Node.js, TypeScript, Python (FastAPI)\n• Frontend/Mobile: React, Next.js, Flutter\n• Data/Cloud: Supabase/Postgres, Vercel, Railway\n• AI applied to business processes (data analysis & decisions)\n• QA: Selenium, Postman, Jira",
+      stack: "Julian's main stack:\n• Backend: Node.js, TypeScript, Python (FastAPI)\n• Frontend/Mobile: React, Next.js, mobile apps\n• Data/Cloud: Supabase/Postgres, Vercel, Railway\n• AI applied to business processes (data analysis & decisions)\n• QA: Selenium, Postman, Jira",
       contact: "You can reach Julian via:\n✉️ julianmolinerisit@gmail.com\n💼 linkedin.com/in/julianmolineris\n💻 github.com/molinerisit\nOr use the contact form on the page.",
       cv: "Done! Opening the CV for download 👇",
       meeting: "To book a call, use the scheduling page and pick a date and time. You'll get the invite by email.\n👉 reuniones.html",

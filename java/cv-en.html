@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
+  <meta name="robots" content="noindex,nofollow" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CV – Julian Molineris | Full Stack Developer</title>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>CV – Julian Molineris | Full Stack Java Developer</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
-  // Respeta el idioma elegido en el sitio: si está en inglés, mostramos la versión EN.
-  if ((localStorage.lang || 'es') === 'en') location.replace('cv-en.html');
+  // Respeta el idioma elegido en el sitio: si está en español, mostramos la versión ES.
+  if ((localStorage.lang || 'es') === 'es') location.replace('cv.html');
 </script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; font-size: 13px; line-height: 1.5; }
 
-/* Toolbar (no imprime) */
+/* Toolbar (does not print) */
 .toolbar { position: sticky; top: 0; z-index: 10; display: flex; gap: 10px; justify-content: center; align-items: center; padding: 12px; background: #0f1b35; flex-wrap: wrap; }
 .toolbar a, .toolbar button { font-family: inherit; font-size: 13px; font-weight: 600; border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer; text-decoration: none; }
 .toolbar .btn-primary { background: #4a90d9; color: #fff; }
@@ -66,7 +67,6 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 .project-card .p-title a { color: #4a90d9; text-decoration: none; font-weight: 600; font-size: 10px; }
 .project-card .p-desc { font-size: 11px; color: #3a4a6b; line-height: 1.5; }
 .project-card .p-stack { font-size: 9.5px; color: #7a9cc4; margin-top: 3px; font-style: italic; }
-.portfolio-link { font-size: 11px; color: #4a90d9; margin-top: 6px; font-weight: 500; }
 
 @media print {
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -80,10 +80,10 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 <body>
 
 <div class="toolbar">
-  <button class="btn-primary" onclick="window.print()">⬇ Descargar / Imprimir PDF</button>
-  <a class="btn-ghost" href="cv-en.html" onclick="localStorage.lang='en'">🌐 English</a>
-  <a class="btn-ghost" href="index.html">← Volver al sitio</a>
-  <span class="hint">Tip: en el diálogo de impresión elegí "Guardar como PDF", tamaño A4, márgenes ninguno.</span>
+  <button class="btn-primary" onclick="window.print()">⬇ Download / Print PDF</button>
+  <a class="btn-ghost" href="cv.html" onclick="localStorage.lang='es'">🌐 Español</a>
+  <a class="btn-ghost" href="index.html">← Back to site</a>
+  <span class="hint">Tip: in the print dialog choose "Save as PDF", A4 size, no margins.</span>
 </div>
 
 <div class="page">
@@ -92,101 +92,102 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
   <aside class="sidebar">
 
     <div class="photo-wrap">
-      <img src="assets/profile.jpg" alt="Julian Molineris" onerror="this.style.display='none'">
+      <img src="../assets/profile.jpg" alt="Julian Molineris" onerror="this.style.display='none'">
     </div>
 
     <div class="sidebar-name">
       <h1>Julian<br>Molineris</h1>
-      <div class="role">Full Stack Developer<br>React · Next.js · Node.js · TypeScript<br>SaaS · POS · Integraciones con IA</div>
+      <div class="role">Full Stack Java Developer<br>Java · Spring Boot · PostgreSQL · React<br>SaaS · POS · AI Integrations</div>
     </div>
 
     <div class="sidebar-section">
-      <h3>Contacto</h3>
+      <h3>Contact</h3>
       <div class="contact-item">📍 Rosario, Argentina</div>
       <div class="contact-item">📞 +54 341-2527455</div>
       <div class="contact-item">✉ <a href="mailto:julianmolinerisit@gmail.com">julianmolinerisit@gmail.com</a></div>
-      <div class="contact-item">🌐 <a href="https://julianmolineris.com">julianmolineris.com</a></div>
+      <div class="contact-item">🌐 <a href="https://julianmolineris.com/java">julianmolineris.com/java</a></div>
       <div class="contact-item">🐙 <a href="https://github.com/molinerisit">github.com/molinerisit</a></div>
       <div class="contact-item">💼 <a href="https://linkedin.com/in/julianmolineris">linkedin.com/in/julianmolineris</a></div>
     </div>
 
     <div class="sidebar-section">
-      <div class="avail-badge">Disponible para roles remotos full-time / contractor</div>
+      <div class="avail-badge">Available for remote full-time / contractor roles</div>
     </div>
 
     <div class="sidebar-section">
-      <h3>Tecnologías</h3>
+      <h3>Technologies</h3>
 
       <div class="skills-group">
-        <div class="skills-group-title">Principal</div>
-        <span class="skill-tag highlight">React</span>
-        <span class="skill-tag highlight">Next.js</span>
-        <span class="skill-tag highlight">Node.js</span>
-        <span class="skill-tag highlight">TypeScript</span>
+        <div class="skills-group-title">Core</div>
+        <span class="skill-tag highlight">Java</span>
+        <span class="skill-tag highlight">Spring Boot</span>
+        <span class="skill-tag highlight">Spring Security</span>
+        <span class="skill-tag highlight">Hibernate / JPA</span>
         <span class="skill-tag highlight">PostgreSQL</span>
-        <span class="skill-tag highlight">Supabase</span>
+        <span class="skill-tag highlight">REST APIs</span>
       </div>
 
       <div class="skills-group">
-        <div class="skills-group-title">Complementario</div>
-        <span class="skill-tag">Electron</span>
-        <span class="skill-tag">Apps móviles</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">FastAPI</span>
-        <span class="skill-tag">OpenAI API</span>
+        <div class="skills-group-title">Secondary</div>
+        <span class="skill-tag">JavaFX</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Microservices</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Maven</span>
       </div>
 
       <div class="skills-group">
-        <div class="skills-group-title">Herramientas</div>
+        <div class="skills-group-title">Tools</div>
         <span class="skill-tag">Git</span>
+        <span class="skill-tag">JUnit</span>
         <span class="skill-tag">Postman</span>
         <span class="skill-tag">Jira</span>
-        <span class="skill-tag">Selenium</span>
-        <span class="skill-tag">Desarrollo asistido por IA</span>
+        <span class="skill-tag">IntelliJ IDEA</span>
+        <span class="skill-tag">AI-assisted development</span>
       </div>
 
     </div>
 
     <div class="sidebar-section">
-      <h3>Formación</h3>
+      <h3>Education</h3>
       <div class="edu-item">
-        <div class="edu-title">Licenciatura en Informática</div>
-        <div class="edu-sub">Universidad Siglo 21 · En curso</div>
+        <div class="edu-title">Computer Science Degree</div>
+        <div class="edu-sub">Universidad Siglo 21 · In progress</div>
       </div>
       <div class="edu-item">
-        <div class="edu-title">Full Stack MERN</div>
-        <div class="edu-sub">Platzi · 200h</div>
+        <div class="edu-title">Java &amp; Spring Boot — Backend</div>
+        <div class="edu-sub">Platzi / Udemy · 200h</div>
       </div>
       <div class="edu-item">
-        <div class="edu-title">IA aplicada a procesos de negocio</div>
+        <div class="edu-title">AI applied to business processes</div>
         <div class="edu-sub">Udemy · 2024</div>
       </div>
       <div class="edu-item">
-        <div class="edu-title">Testing QA & Automation</div>
+        <div class="edu-title">QA Testing & Automation</div>
         <div class="edu-sub">Educación IT · 300h</div>
       </div>
       <div class="edu-item">
-        <div class="edu-title">Soporte IT & Ciberseguridad</div>
+        <div class="edu-title">IT Support & Cybersecurity</div>
         <div class="edu-sub">Google / Cisco · 720h</div>
       </div>
     </div>
 
     <div class="sidebar-section">
-      <h3>Idiomas</h3>
+      <h3>Languages</h3>
       <div class="lang-item">
-        <span>Español</span>
+        <span>Spanish · Native</span>
         <div class="lang-level">
           <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
         </div>
       </div>
       <div class="lang-item">
-        <span>Inglés · B1/B2 técnico</span>
+        <span>English · B1/B2 technical</span>
         <div class="lang-level">
           <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
         </div>
       </div>
       <div class="edu-item" style="margin-top:2px;">
-        <div class="edu-sub">Lectura y escritura avanzada · conversación en mejora</div>
+        <div class="edu-sub">Advanced reading & writing · improving conversation</div>
       </div>
     </div>
 
@@ -196,51 +197,51 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
   <main class="main">
 
     <section>
-      <div class="section-title">Perfil Profesional</div>
-      <p class="profile-text">Desarrollador Full Stack <strong>orientado a producto</strong>, con experiencia construyendo sistemas reales para comercios y PYMEs. Trabajo principalmente con <strong>React, Next.js, Node.js, TypeScript, PostgreSQL y Supabase</strong>. Desarrollo soluciones end-to-end como <strong>POS offline-first</strong>, paneles web, apps móviles e integraciones con Mercado Pago, WhatsApp Business API e IA aplicada a datos del negocio. Uso <strong>herramientas de IA</strong> para acelerar prototipado, debugging y documentación, manteniendo criterio técnico propio sobre arquitectura, calidad y producto.</p>
+      <div class="section-title">Professional Profile</div>
+      <p class="profile-text"><strong>Product-oriented Full Stack Java Developer</strong> with experience building real systems for retail and SMEs. I mainly work with <strong>Java, Spring Boot, Spring Security, Hibernate/JPA and PostgreSQL</strong>, exposing REST APIs consumed by React frontends and a JavaFX desktop POS. I build end-to-end solutions such as <strong>offline-first POS</strong>, web dashboards, mobile apps and integrations with Mercado Pago, WhatsApp Business API and AI applied to business data. I use <strong>AI tools</strong> to speed up prototyping, debugging and documentation, while keeping my own technical judgment over architecture, quality and product.</p>
     </section>
 
     <section>
-      <div class="section-title">Experiencia Profesional</div>
+      <div class="section-title">Professional Experience</div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div class="exp-title">Full Stack Developer — SaaS e Integraciones para Comercios</div>
-          <div class="exp-date">2022 – Presente</div>
+          <div class="exp-title">Full Stack Java Developer — SaaS &amp; Business Software Projects</div>
+          <div class="exp-date">2022 – Present</div>
         </div>
-        <div class="exp-company">Proyectos Independientes · Remoto / Rosario, Argentina</div>
+        <div class="exp-company">Independent Projects · Remote / Rosario, Argentina</div>
         <ul class="exp-bullets">
-          <li>Diseñé y desarrollé <strong>productos end-to-end</strong> para comercios y PYMEs: arquitectura, base de datos, frontend, backend, deploy y soporte.</li>
-          <li>Construí <strong>sistemas de gestión</strong> de ventas, stock, caja, clientes y facturación electrónica en uso real, con foco en operación <strong>offline-first</strong> y confiabilidad.</li>
-          <li>Implementé <strong>integraciones</strong> con Mercado Pago, WhatsApp Business API e IA aplicada a los datos del negocio.</li>
-          <li>Sumé <strong>desarrollo asistido por IA</strong> al flujo de trabajo para acelerar prototipado, debugging y documentación, manteniendo criterio técnico propio.</li>
+          <li>Designed and built <strong>end-to-end products</strong> for retail and SMEs: <strong>Java / Spring Boot</strong> backends (REST, Spring Security, Hibernate/JPA over PostgreSQL) and JavaFX desktop apps.</li>
+          <li>Built <strong>management systems</strong> for sales, stock, cash, customers and electronic invoicing in real use, focused on <strong>offline-first</strong> operation and reliability.</li>
+          <li>Implemented <strong>integrations</strong> with Mercado Pago, WhatsApp Business API and AI applied to business data.</li>
+          <li>Brought <strong>AI-assisted development</strong> into my workflow to speed up prototyping, debugging and documentation, while keeping my own technical judgment.</li>
         </ul>
-        <div class="exp-stack">Stack: React · Next.js · Node.js · TypeScript · FastAPI · Supabase · PostgreSQL</div>
+        <div class="exp-stack">Stack: Java · Spring Boot · Spring Security · Hibernate/JPA · PostgreSQL · JavaFX · React · Docker · Maven</div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div class="exp-title">Encargado de Operaciones y Tecnología</div>
-          <div class="exp-date">Dic 2019 – Sep 2025</div>
+          <div class="exp-title">Operations & Technology Lead</div>
+          <div class="exp-date">Dec 2019 – Sep 2025</div>
         </div>
         <div class="exp-company">La Macelleria · Rosario, Argentina</div>
         <ul class="exp-bullets">
-          <li>Lideré la <strong>digitalización operativa</strong> del negocio familiar: stock, ventas, tickets, procesos internos y control diario.</li>
-          <li>Capacité a un <strong>equipo de 5 personas</strong> en herramientas digitales internas.</li>
-          <li>Implementé mejoras tecnológicas que <strong>redujeron procesos manuales</strong> y errores operativos.</li>
-          <li>Coordiné la <strong>apertura tecnológica de un nuevo local</strong>.</li>
+          <li>Led the <strong>operational digitalization</strong> of the family business: stock, sales, tickets, internal processes and daily control.</li>
+          <li>Trained a <strong>team of 5</strong> on internal digital tools.</li>
+          <li>Built an <strong>internal system in Java / Spring Boot</strong> that reduced manual processes and operational errors.</li>
+          <li>Coordinated the <strong>tech setup for a new store opening</strong>.</li>
         </ul>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div class="exp-title">QA Tester – Proyectos Internacionales</div>
+          <div class="exp-title">QA Tester – International Projects</div>
           <div class="exp-date">2022 – 2023</div>
         </div>
-        <div class="exp-company">uTest · Remoto</div>
+        <div class="exp-company">uTest · Remote</div>
         <ul class="exp-bullets">
-          <li>Ejecuté ciclos de <strong>testing funcional y manual</strong> en plataformas e-commerce para clientes de EE.UU. y Europa.</li>
-          <li>Documenté casos de prueba y reporté bugs en <strong>Jira</strong>, con trazabilidad para equipos de desarrollo internacionales.</li>
+          <li>Ran <strong>functional and manual testing</strong> cycles on e-commerce platforms for clients in the US and Europe.</li>
+          <li>Documented test cases and reported bugs in <strong>Jira</strong>, with traceability for international development teams.</li>
         </ul>
         <div class="exp-stack">Stack: Selenium · Postman · Jira</div>
       </div>
@@ -248,25 +249,25 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
     </section>
 
     <section>
-      <div class="section-title">Proyectos Destacados</div>
+      <div class="section-title">Featured Projects</div>
       <div class="projects-grid">
 
         <div class="project-card">
-          <div class="p-title">🛒 Venta Simple — SaaS de gestión &nbsp;<a href="https://ventasimple.cloud" target="_blank" rel="noopener">[demo en vivo]</a></div>
-          <div class="p-desc">POS de escritorio offline-first, panel web y app móvil para ventas, stock, clientes, caja y facturación electrónica. Integra Mercado Pago, WhatsApp API e IA sobre los datos del negocio. <strong>En uso activo por comercios reales.</strong></div>
-          <div class="p-stack">Next.js · Node.js/FastAPI · Electron · App móvil · Supabase · Mercado Pago · WhatsApp API</div>
+          <div class="p-title">🛒 Venta Simple — Management SaaS &nbsp;<a href="https://ventasimple.cloud" target="_blank" rel="noopener">[live demo]</a></div>
+          <div class="p-desc"><strong>JavaFX</strong> offline-first desktop POS, <strong>Spring Boot</strong> backend, web dashboard and mobile app for sales, stock, customers, cash and electronic invoicing. Integrates Mercado Pago, WhatsApp API and AI. <strong>In active use by real businesses.</strong></div>
+          <div class="p-stack">Java · Spring Boot · JavaFX · React · PostgreSQL · Mercado Pago · WhatsApp API</div>
         </div>
 
         <div class="project-card">
-          <div class="p-title">💬 Axiia / Kairos — Asistentes con IA</div>
-          <div class="p-desc">Plataforma SaaS de asistentes conversacionales para atención al cliente, ventas, reservas y posventa. Funciona vía WhatsApp y widget web embebible, con reglas de negocio configurables y costo de API controlado.</div>
-          <div class="p-stack">React · Node.js · PostgreSQL · Redis · WhatsApp Business API · OpenAI API</div>
+          <div class="p-title">💬 Axiia / Kairos — AI assistants</div>
+          <div class="p-desc">SaaS platform of conversational assistants for customer service, sales, bookings and after-sales. Works via WhatsApp and an embeddable web widget, with configurable business rules and API cost under control.</div>
+          <div class="p-stack">Java · Spring Boot · PostgreSQL · Redis · WhatsApp Business API · OpenAI API</div>
         </div>
 
         <div class="project-card">
-          <div class="p-title">🌡️ IoT — LINEup / AgriSense · Monitoreo con ESP32</div>
-          <div class="p-desc"><strong>LINEup:</strong> trazabilidad de cadena de frío para heladeras y cámaras comerciales, con histórico, alertas por WhatsApp, umbrales configurables y control de apertura de puerta. <strong>En uso hace más de 1 año en La Macelleria</strong>. <strong>AgriSense:</strong> monitoreo de humedad/temperatura y riego automatizado para viveros, conectado a una app móvil de control.</div>
-          <div class="p-stack">ESP32 · sensores · Node.js · WhatsApp API · app móvil</div>
+          <div class="p-title">🌡️ IoT — LINEup / AgriSense · ESP32 monitoring</div>
+          <div class="p-desc"><strong>LINEup:</strong> cold-chain traceability for commercial fridges and cold rooms, with temperature history, WhatsApp alerts, configurable thresholds and per-unit door-open monitoring — <strong>in use for over a year at La Macelleria</strong>. <strong>AgriSense:</strong> humidity/temperature monitoring and automated irrigation for nurseries, with a mobile control app.</div>
+          <div class="p-stack">ESP32 · sensors · Java · Spring Boot · PostgreSQL · WhatsApp API</div>
         </div>
 
       </div>

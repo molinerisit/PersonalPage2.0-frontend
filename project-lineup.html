@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>LINEup — Trazabilidad de cadena de frío | Julian Molineris</title>
+  <meta name="description" content="Monitoreo de temperatura en tiempo real para heladeras y cámaras comerciales con ESP32 y DS18B20, alertas por WhatsApp y app móvil. En uso +1 año en La Macelleria." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://julianmolineris.com/project-lineup" />
+  <meta property="og:title" content="LINEup — Trazabilidad de cadena de frío | Julian Molineris" />
+  <meta property="og:description" content="Sensores ESP32 + DS18B20 + alertas por WhatsApp + app móvil. Cadena de frío para comercios." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://julianmolineris.com/project-lineup" />
+  <meta property="og:image" content="https://julianmolineris.com/assets/profile.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={ darkMode:'class' }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>body{font-family:'Inter',sans-serif} h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}</style>
+  <script>
+    const setTheme=(t)=>{try{localStorage.setItem('theme',t)}catch(e){};t==='dark'?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark')};
+    (()=>{const s=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(s==='dark')document.documentElement.classList.add('dark')})();
+  </script>
+  <script>
+    const I18N = {
+      es: {
+        bc: 'LINEup — Trazabilidad de cadena de frío', title: 'LINEup — Trazabilidad de cadena de frío',
+        subtitle: 'Monitoreo de temperatura en tiempo real para heladeras y cámaras comerciales, con alertas por WhatsApp y app móvil.',
+        cta_pilot: 'Hablemos de un piloto', cta_github: '💻 GitHub',
+        m1l: 'en producción', m2l: 'tiempo real', m3l: 'La Macelleria',
+        hero_card_sub: 'Alertas y umbrales por equipo',
+        problem_h: 'Problema', problem_p: 'Sin trazabilidad de la cadena de frío, una heladera que se sale de rango de noche puede arruinar producto sin que nadie se entere hasta la mañana.',
+        solution_h: 'Solución',
+        sol1: 'Sensores ESP32 + DS18B20 en cada heladera/cámara, con sensor de apertura de puerta.',
+        sol2: 'Backend Node.js + MongoDB con histórico y umbrales configurables por equipo.',
+        sol3: 'Alertas por WhatsApp al salir de rango o quedar la puerta abierta.',
+        sol4: 'App móvil para ver temperaturas en vivo, histórico y estado de cada equipo.',
+        results_h: 'Resultados', results_p: 'Producto protegido, cumplimiento de cadena de frío y respuesta inmediata ante fallas. En uso hace más de 1 año en La Macelleria.',
+        stack_h: 'Stack',
+        s1: 'ESP32 WROOM-32 + DS18B20 (temperatura sumergible)', s2: 'Sensor de puerta + medición de batería', s3: 'Node.js + Express + MongoDB (JWT)', s4: 'Alertas por WhatsApp (Evolution API)', s5: 'App móvil + Deep sleep (autonomía a batería)',
+        gallery_h: 'El producto', g1: 'App: temperaturas, puertas y alertas', g2: 'Arquitectura: sensores → nube → alertas', g3: 'En uso real en La Macelleria',
+        final_h: '¿Tenés heladeras o cámaras que cuidar?', final_p: 'Hago un piloto con tus equipos y umbrales.', final_cta: 'Hablar ahora'
+      },
+      en: {
+        bc: 'LINEup — Cold-chain traceability', title: 'LINEup — Cold-chain traceability',
+        subtitle: 'Real-time temperature monitoring for commercial fridges and cold rooms, with WhatsApp alerts and a mobile app.',
+        cta_pilot: 'Let’s talk about a pilot', cta_github: '💻 GitHub',
+        m1l: 'in production', m2l: 'real time', m3l: 'La Macelleria',
+        hero_card_sub: 'Per-unit alerts and thresholds',
+        problem_h: 'Problem', problem_p: 'Without cold-chain traceability, a fridge drifting out of range overnight can ruin product before anyone notices in the morning.',
+        solution_h: 'Solution',
+        sol1: 'ESP32 + DS18B20 sensors on each fridge/cold room, with a door-open sensor.',
+        sol2: 'Node.js + MongoDB backend with history and per-unit configurable thresholds.',
+        sol3: 'WhatsApp alerts when temperature leaves range or a door stays open.',
+        sol4: 'Mobile app to see live temperatures, history and the status of each unit.',
+        results_h: 'Results', results_p: 'Protected product, cold-chain compliance and immediate response to failures. In use for over a year at La Macelleria.',
+        stack_h: 'Stack',
+        s1: 'ESP32 WROOM-32 + DS18B20 (submersible temperature)', s2: 'Door sensor + battery monitoring', s3: 'Node.js + Express + MongoDB (JWT)', s4: 'WhatsApp alerts (Evolution API)', s5: 'Mobile app + Deep sleep (battery autonomy)',
+        gallery_h: 'The product', g1: 'App: temperatures, doors and alerts', g2: 'Architecture: sensors → cloud → alerts', g3: 'In real use at La Macelleria',
+        final_h: 'Got fridges or cold rooms to protect?', final_p: 'I’ll set up a pilot with your units and thresholds.', final_cta: 'Talk now'
+      }
+    };
+    function setLang(l){
+      localStorage.lang = l;
+      const d = I18N[l] || I18N.es;
+      document.querySelectorAll('[data-i18n]').forEach(e=>{ const k=e.dataset.i18n; if(d[k]!=null) e.innerHTML=d[k]; });
+      document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('opacity-60', b.dataset.lang!==l));
+      document.documentElement.lang = l;
+      window.dispatchEvent(new CustomEvent('jm:lang',{detail:{lang:l}}));
+    }
+    window.addEventListener('DOMContentLoaded', ()=> setLang(localStorage.lang || 'es'));
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
+<header class="border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 backdrop-blur-md dark:bg-slate-900/60 sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a class="flex items-center gap-3 group" href="index.html">
+      <img src="assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
+      <span class="font-semibold text-lg">Julian Molineris</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <a href="CV_Julian_Molineris.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
+      <button class="px-3 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-xs hover:bg-slate-100 dark:hover:bg-slate-800" onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')">Tema</button>
+      <div class="flex items-center gap-1 text-xs ml-1">
+        <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 opacity-60 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="bg-gradient-to-br from-blue-800 via-blue-600 to-cyan-500 text-white">
+  <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-[1fr,420px] gap-10 items-center">
+    <div>
+      <nav class="text-blue-100/80 text-sm mb-3"><a href="index.html" class="hover:underline">Inicio</a> / <span data-i18n="bc">LINEup — Trazabilidad de cadena de frío</span></nav>
+      <img src="assets/iot/lineup-wordmark.png" alt="LINEup" class="h-10 md:h-12 mb-3 drop-shadow" loading="lazy" />
+      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="title">LINEup — Trazabilidad de cadena de frío</h1>
+      <p class="mt-3 text-blue-100/90" data-i18n="subtitle">Monitoreo de temperatura en tiempo real para heladeras y cámaras comerciales, con alertas por WhatsApp y app móvil.</p>
+
+      <div class="mt-5 flex gap-2 flex-wrap">
+        <span class="px-3 py-1 rounded-full bg-blue-100/90 text-blue-900 text-xs font-medium">ESP32</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100/90 text-blue-900 text-xs font-medium">DS18B20</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100/90 text-blue-900 text-xs font-medium">Node.js</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100/90 text-blue-900 text-xs font-medium">MongoDB</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100/90 text-blue-900 text-xs font-medium">App móvil</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100/90 text-blue-900 text-xs font-medium">WhatsApp</span>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 text-white text-sm font-semibold hover:bg-white/30 transition" data-i18n="cta_pilot">Hablemos de un piloto</a>
+        <a href="https://github.com/molinerisit" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 text-white text-sm font-semibold hover:bg-white/30 transition" data-i18n="cta_github">💻 GitHub</a>
+      </div>
+
+      <dl class="mt-6 grid grid-cols-3 max-w-md gap-3 text-center text-blue-50/90">
+        <div><dt class="text-2xl font-extrabold">+1 año</dt><dd class="text-xs" data-i18n="m1l">en producción</dd></div>
+        <div><dt class="text-2xl font-extrabold">24/7</dt><dd class="text-xs" data-i18n="m2l">tiempo real</dd></div>
+        <div><dt class="text-2xl font-extrabold">🥩</dt><dd class="text-xs" data-i18n="m3l">La Macelleria</dd></div>
+      </dl>
+    </div>
+
+    <div class="justify-self-center md:justify-self-end">
+      <img src="assets/iot/lineup-hero.jpg" alt="App LINEup monitoreando heladeras comerciales con alertas" class="w-full max-w-md rounded-2xl ring-4 ring-white/20 shadow-2xl" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 py-12 space-y-10">
+  <section class="grid md:grid-cols-3 gap-6">
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="problem_h">Problema</h2>
+      <p class="text-slate-700 dark:text-slate-300" data-i18n="problem_p">Sin trazabilidad de la cadena de frío, una heladera que se sale de rango de noche puede arruinar producto sin que nadie se entere hasta la mañana.</p>
+    </article>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="solution_h">Solución</h2>
+      <ul class="list-disc ml-5 space-y-1 text-slate-700 dark:text-slate-300">
+        <li data-i18n="sol1">Sensores ESP32 + DS18B20 en cada heladera/cámara, con sensor de apertura de puerta.</li>
+        <li data-i18n="sol2">Backend Node.js + MongoDB con histórico y umbrales configurables por equipo.</li>
+        <li data-i18n="sol3">Alertas por WhatsApp al salir de rango o quedar la puerta abierta.</li>
+        <li data-i18n="sol4">App móvil para ver temperaturas en vivo, histórico y estado de cada equipo.</li>
+      </ul>
+    </article>
+    <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+      <h2 class="text-xl font-bold mb-2" data-i18n="results_h">Resultados</h2>
+      <p class="text-slate-700 dark:text-slate-300" data-i18n="results_p">Producto protegido, cumplimiento de cadena de frío y respuesta inmediata ante fallas. En uso hace más de 1 año en La Macelleria.</p>
+    </article>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4" data-i18n="stack_h">Stack</h2>
+    <ul class="list-disc ml-6 space-y-1 text-slate-700 dark:text-slate-300">
+      <li data-i18n="s1">ESP32 WROOM-32 + DS18B20 (temperatura sumergible)</li>
+      <li data-i18n="s2">Sensor de puerta + medición de batería</li>
+      <li data-i18n="s3">Node.js + Express + MongoDB (JWT)</li>
+      <li data-i18n="s4">Alertas por WhatsApp (Evolution API)</li>
+      <li data-i18n="s5">App móvil + Deep sleep (autonomía a batería)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4" data-i18n="gallery_h">El producto</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+        <img src="assets/iot/lineup-mockup.jpg" alt="App LINEup — temperaturas, puertas y alertas" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <figcaption class="p-3 text-sm text-slate-600 dark:text-slate-400" data-i18n="g1">App: temperaturas, puertas y alertas</figcaption>
+      </figure>
+      <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+        <img src="assets/iot/lineup-arch.jpg" alt="Arquitectura: sensores, nube y alertas" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <figcaption class="p-3 text-sm text-slate-600 dark:text-slate-400" data-i18n="g2">Arquitectura: sensores → nube → alertas</figcaption>
+      </figure>
+      <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+        <img src="assets/iot/lineup-butcher.jpg" alt="Heladeras y cámara de carne monitoreadas en La Macelleria" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <figcaption class="p-3 text-sm text-slate-600 dark:text-slate-400" data-i18n="g3">En uso real en La Macelleria</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="mt-8 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+    <div class="flex flex-wrap items-center gap-3 justify-between">
+      <div>
+        <h3 class="font-bold text-lg" data-i18n="final_h">¿Tenés heladeras o cámaras que cuidar?</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400" data-i18n="final_p">Hago un piloto con tus equipos y umbrales.</p>
+      </div>
+      <a href="#chat" onclick="document.querySelector('#jm-chat-toggle')?.click()" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500" data-i18n="final_cta">Hablar ahora</a>
+    </div>
+  </section>
+</main>
+
+<footer class="mt-16 border-t border-slate-200 dark:border-slate-700">
+  <div class="max-w-6xl mx-auto px-4 py-10 grid sm:grid-cols-[1fr,auto] gap-6 items-center">
+    <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="yr"></span> Julian Molineris.</div>
+    <div class="justify-self-center sm:justify-self-end text-center">
+      <img src="assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>window.JM_API_BASE = window.JM_API_BASE || "https://portfolio-backend-production-4e0d.up.railway.app";</script>
+<script src="jm-chat.js?v=4"></script>
+</body>
+</html>

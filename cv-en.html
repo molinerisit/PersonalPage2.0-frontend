@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
   // Respeta el idioma elegido en el sitio: si está en español, mostramos la versión ES.
-  if ((localStorage.lang || 'es') === 'es') location.replace('cv.html');
+  // (Se ignora el redirect cuando se imprime el PDF en headless con ?pdf=1)
+  if (!location.search.includes('pdf=1') && (localStorage.lang || 'es') === 'es') location.replace('cv.html');
 </script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,7 +26,7 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 .page { width: 210mm; min-height: 297mm; margin: 16px auto; background: #fff; display: grid; grid-template-columns: 72mm 1fr; box-shadow: 0 0 30px rgba(0,0,0,0.15); }
 
 /* ── SIDEBAR ── */
-.sidebar { background: #0f1b35; color: #e8edf5; padding: 22px 22px; display: flex; flex-direction: column; gap: 13px; }
+.sidebar { background: #0f1b35; color: #e8edf5; padding: 16px 20px; display: flex; flex-direction: column; gap: 9px; }
 .photo-wrap { display: flex; justify-content: center; }
 .photo-wrap img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #4a90d9; }
 .sidebar-name { text-align: center; }
@@ -48,20 +49,20 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 .avail-badge { background: #1e3a5f; border: 1px solid #4a90d9; color: #4a90d9; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px; text-align: center; }
 
 /* ── MAIN ── */
-.main { padding: 26px 26px; display: flex; flex-direction: column; gap: 13px; }
-.section-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #0f1b35; margin-bottom: 10px; padding-bottom: 4px; border-bottom: 2px solid #4a90d9; }
+.main { padding: 18px 24px; display: flex; flex-direction: column; gap: 9px; }
+.section-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #0f1b35; margin-bottom: 7px; padding-bottom: 3px; border-bottom: 2px solid #4a90d9; }
 .profile-text { font-size: 12px; color: #3a4a6b; line-height: 1.5; }
-.exp-item { margin-bottom: 10px; }
+.exp-item { margin-bottom: 6px; }
 .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1px; }
 .exp-title { font-size: 12.5px; font-weight: 700; color: #0f1b35; }
 .exp-date { font-size: 10px; color: #7a9cc4; font-weight: 500; white-space: nowrap; margin-left: 8px; margin-top: 2px; }
-.exp-company { font-size: 11px; color: #4a90d9; font-weight: 600; margin-bottom: 5px; }
+.exp-company { font-size: 11px; color: #4a90d9; font-weight: 600; margin-bottom: 3px; }
 .exp-bullets { list-style: none; padding: 0; }
-.exp-bullets li { font-size: 11.5px; color: #3a4a6b; padding-left: 13px; position: relative; margin-bottom: 3px; line-height: 1.5; }
+.exp-bullets li { font-size: 11.5px; color: #3a4a6b; padding-left: 13px; position: relative; margin-bottom: 2px; line-height: 1.42; }
 .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: #4a90d9; font-size: 10px; top: 2px; }
 .exp-stack { margin-top: 5px; font-size: 10px; color: #7a9cc4; font-style: italic; }
-.projects-grid { display: flex; flex-direction: column; gap: 8px; }
-.project-card { background: #f7f9fc; border-left: 3px solid #4a90d9; padding: 9px 13px; border-radius: 0 6px 6px 0; }
+.projects-grid { display: flex; flex-direction: column; gap: 6px; }
+.project-card { background: #f7f9fc; border-left: 3px solid #4a90d9; padding: 6px 13px; border-radius: 0 6px 6px 0; }
 .project-card .p-title { font-size: 12px; font-weight: 700; color: #0f1b35; margin-bottom: 3px; }
 .project-card .p-title a { color: #4a90d9; text-decoration: none; font-weight: 600; font-size: 10px; }
 .project-card .p-desc { font-size: 11px; color: #3a4a6b; line-height: 1.5; }
@@ -96,7 +97,7 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 
     <div class="sidebar-name">
       <h1>Julian<br>Molineris</h1>
-      <div class="role">Full Stack Developer · Product Builder<br>React · Next.js · Node.js · TypeScript · AI</div>
+      <div class="role">Full Stack Developer<br>React · Next.js · Node.js · TypeScript<br>SaaS · POS · AI Integrations</div>
     </div>
 
     <div class="sidebar-section">
@@ -110,7 +111,7 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
     </div>
 
     <div class="sidebar-section">
-      <div class="avail-badge">Available for remote full-time roles</div>
+      <div class="avail-badge">Available for remote full-time / contractor roles</div>
     </div>
 
     <div class="sidebar-section">
@@ -128,19 +129,20 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 
       <div class="skills-group">
         <div class="skills-group-title">Secondary</div>
-        <span class="skill-tag">Flutter</span>
         <span class="skill-tag">Electron</span>
+        <span class="skill-tag">Mobile apps</span>
         <span class="skill-tag">Python</span>
-        <span class="skill-tag">AI / LLM</span>
-        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">OpenAI API</span>
       </div>
 
       <div class="skills-group">
-        <div class="skills-group-title">QA & Tooling</div>
-        <span class="skill-tag">Selenium</span>
+        <div class="skills-group-title">Tools</div>
+        <span class="skill-tag">Git</span>
         <span class="skill-tag">Postman</span>
         <span class="skill-tag">Jira</span>
-        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Selenium</span>
+        <span class="skill-tag">AI-assisted development</span>
       </div>
 
     </div>
@@ -149,7 +151,7 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
       <h3>Education</h3>
       <div class="edu-item">
         <div class="edu-title">Computer Science Degree</div>
-        <div class="edu-sub">Universidad Siglo 21 · Advanced student (3rd year)</div>
+        <div class="edu-sub">Universidad Siglo 21 · In progress</div>
       </div>
       <div class="edu-item">
         <div class="edu-title">Full Stack MERN</div>
@@ -195,7 +197,7 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 
     <section>
       <div class="section-title">Professional Profile</div>
-      <p class="profile-text"><strong>Product-oriented</strong> Full Stack Developer with 3+ years building real solutions for retail and SMEs. I built end-to-end systems with <strong>React, Next.js, Node.js, TypeScript, Flutter and Supabase</strong>: offline-first POS, web dashboards, mobile apps, integrations with Mercado Pago and WhatsApp Business API, and <strong>AI applied to business processes</strong>. I focus on functional, scalable and usable products —from architecture and backend to user experience. I'm looking for remote opportunities where I can bring autonomy, product judgment and the ability to turn real problems into software that runs in production.</p>
+      <p class="profile-text"><strong>Product-oriented</strong> Full Stack Developer with experience building real systems for retail businesses and SMEs. My main stack includes <strong>React, Next.js, Node.js, TypeScript, PostgreSQL and Supabase</strong>. I build end-to-end solutions such as <strong>offline-first POS systems</strong>, web dashboards, mobile apps and integrations with Mercado Pago, WhatsApp Business API and AI applied to business data. I use <strong>AI tools</strong> to speed up prototyping, debugging and documentation while maintaining technical ownership over architecture, quality and product decisions.</p>
     </section>
 
     <section>
@@ -203,16 +205,17 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
 
       <div class="exp-item">
         <div class="exp-header">
-          <div class="exp-title">Full Stack Developer – Freelance</div>
+          <div class="exp-title">Full Stack Developer — SaaS &amp; Business Software Projects</div>
           <div class="exp-date">2022 – Present</div>
         </div>
         <div class="exp-company">Independent Projects · Remote / Rosario, Argentina</div>
         <ul class="exp-bullets">
-          <li>Designed and built end-to-end <strong>SaaS products</strong> and internal tools for retail and SMEs: frontend, backend, database, external integrations and deployment.</li>
-          <li>Integrated <strong>external APIs</strong> (Mercado Pago, WhatsApp Business API, Brave) and <strong>AI applied to operational data analysis</strong> and decision-making.</li>
-          <li>My products are <strong>in real use, in production with active clients</strong> (details below).</li>
+          <li>Designed and built <strong>end-to-end products</strong> for retail and SMEs: architecture, database, frontend, backend, deployment and support.</li>
+          <li>Built <strong>management systems</strong> for sales, stock, cash, customers and electronic invoicing in real use, focused on <strong>offline-first</strong> operation and reliability.</li>
+          <li>Implemented <strong>integrations</strong> with Mercado Pago, WhatsApp Business API and AI applied to business data.</li>
+          <li>Brought <strong>AI-assisted development</strong> into my workflow to speed up prototyping, debugging and documentation, while maintaining technical ownership over architecture, quality and product decisions.</li>
         </ul>
-        <div class="exp-stack">Stack: React · Next.js · Node.js · TypeScript · FastAPI · Flutter · Supabase · PostgreSQL</div>
+        <div class="exp-stack">Stack: React · Next.js · Node.js · TypeScript · FastAPI · Supabase · PostgreSQL</div>
       </div>
 
       <div class="exp-item">
@@ -222,9 +225,10 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
         </div>
         <div class="exp-company">La Macelleria · Rosario, Argentina</div>
         <ul class="exp-bullets">
-          <li>Led and trained a <strong>team of 5</strong> on internal digital systems.</li>
-          <li>Designed and implemented an <strong>internal system (Node.js / Next.js)</strong> for stock, sales and tickets, replacing 100% manual processes.</li>
-          <li>Coordinated the <strong>opening of a new store</strong>, managing all the tech operations from scratch.</li>
+          <li>Led the <strong>operational digitalization</strong> of the family business: stock, sales, tickets, internal processes and daily control.</li>
+          <li>Trained a <strong>team of 5</strong> on internal digital tools.</li>
+          <li>Implemented tech improvements that <strong>reduced manual processes</strong> and operational errors.</li>
+          <li>Coordinated the <strong>tech setup for a new store opening</strong>.</li>
         </ul>
       </div>
 
@@ -250,19 +254,19 @@ body { font-family: 'Inter', sans-serif; background: #e9edf3; color: #1a1a2e; fo
         <div class="project-card">
           <div class="p-title">🛒 Venta Simple — Management SaaS &nbsp;<a href="https://ventasimple.cloud" target="_blank" rel="noopener">[live demo]</a></div>
           <div class="p-desc">Offline-first desktop POS, web dashboard and mobile app for sales, stock, customers, cash and electronic invoicing. Integrates Mercado Pago, WhatsApp API and AI over the business data. <strong>In active use by real businesses.</strong></div>
-          <div class="p-stack">Next.js · Node.js/FastAPI · Electron · Flutter · Supabase · Mercado Pago · WhatsApp API</div>
+          <div class="p-stack">Next.js · Node.js/FastAPI · Electron · Mobile app · Supabase · Mercado Pago · WhatsApp API</div>
         </div>
 
         <div class="project-card">
           <div class="p-title">💬 Axiia / Kairos — AI assistants</div>
           <div class="p-desc">SaaS platform of conversational assistants for customer service, sales, bookings and after-sales. Works via WhatsApp and an embeddable web widget, with configurable business rules and API cost under control.</div>
-          <div class="p-stack">React/Flutter Web · Node.js · PostgreSQL · Redis · WhatsApp Business API · OpenAI API</div>
+          <div class="p-stack">React · Node.js · PostgreSQL · Redis · WhatsApp Business API · OpenAI API</div>
         </div>
 
         <div class="project-card">
-          <div class="p-title">🌡️ IoT — Monitoring & traceability (ESP32)</div>
-          <div class="p-desc"><strong>Temperature traceability</strong> for fridges and refrigerated transport: alerts when it leaves the configured range (e.g. 0–5 °C) and history — <strong>in use for 1 year at La Macelleria</strong>. Also humidity/temperature monitoring with automated irrigation for nurseries.</div>
-          <div class="p-stack">ESP32 · sensors · MQTT · Flutter · Python</div>
+          <div class="p-title">🌡️ IoT — LINEup / AgriSense · ESP32 monitoring</div>
+          <div class="p-desc"><strong>LINEup:</strong> cold-chain traceability for commercial fridges and cold rooms, with temperature history, WhatsApp alerts, configurable thresholds and per-unit door-open monitoring. <strong>In use for over a year at La Macelleria</strong>. <strong>AgriSense:</strong> humidity/temperature monitoring and automated irrigation for nurseries, connected to a mobile control app.</div>
+          <div class="p-stack">ESP32 · sensors · Node.js · WhatsApp API · mobile app</div>
         </div>
 
       </div>

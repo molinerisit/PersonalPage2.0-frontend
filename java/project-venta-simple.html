@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="es">
 <head>
+  <meta name="robots" content="noindex,nofollow" />
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Venta Simple — SaaS de gestión para comercios | Julian Molineris</title>
-  <meta name="description" content="SaaS multiplataforma para comercios: POS de escritorio offline-first, panel web en la nube, app móvil y facturación electrónica AFIP/ARCA. Next.js, FastAPI, Electron y Supabase." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="canonical" href="https://julianmolineris.com/project-venta-simple" />
+  <meta name="description" content="SaaS multiplataforma para comercios: POS de escritorio offline-first, panel web, app móvil y facturación electrónica AFIP/ARCA. Java, Spring Boot, JavaFX, React y PostgreSQL." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://julianmolineris.com/java/project-venta-simple" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Venta Simple — SaaS de gestión para comercios | Julian Molineris" />
   <meta property="og:description" content="POS offline-first + panel web + app móvil + facturación AFIP/ARCA. En producción con clientes reales." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://julianmolineris.com/project-venta-simple" />
+  <meta property="og:url" content="https://julianmolineris.com/java/project-venta-simple" />
   <meta property="og:image" content="https://julianmolineris.com/assets/venta-simple/vs-real-metricas.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -33,14 +34,14 @@
       es: {
         bc: 'Venta Simple', badge: 'PROYECTO DESTACADO · EN PRODUCCIÓN',
         title: 'Venta Simple — SaaS de gestión para comercios',
-        desc: 'Plataforma completa que diseñé y construí de punta a punta: punto de venta de escritorio <strong>offline-first</strong>, panel web en la nube, app móvil y <strong>facturación electrónica AFIP/ARCA</strong>. Usado por comercios reales.',
+        desc: 'Plataforma completa que diseñé y construí de punta a punta: <strong>POS de escritorio en JavaFX</strong> (offline-first), backend en <strong>Java / Spring Boot</strong>, panel web, app móvil y <strong>facturación electrónica AFIP/ARCA</strong>. Usado por comercios reales.',
         cta_demo: '🌐 Ver demo en vivo', cta_github: '💻 GitHub',
         m1l: 'por venta (antes 2–3 min)', m2l: 'cierre de caja (antes 40)', m3l: 'vende sin internet',
         problem_h: 'Problema',
         problem_p: 'Los comercios chicos manejaban ventas con cuaderno o planillas: caja lenta, errores de cálculo, stock sin control y sin visibilidad cuando el dueño no estaba en el local.',
         solution_h: 'Solución',
-        sol1: '<strong>POS de escritorio</strong> (Electron) que funciona offline y sincroniza solo.',
-        sol2: '<strong>Panel web</strong> (Next.js) con métricas, catálogo y multi-empresa.',
+        sol1: '<strong>POS de escritorio</strong> (JavaFX) que funciona offline y sincroniza solo.',
+        sol2: '<strong>Panel web</strong> (React) con métricas, catálogo y multi-empresa.',
         sol3: '<strong>App móvil</strong> para escanear e inventariar desde el celular.',
         sol4: '<strong>Facturación AFIP/ARCA</strong> integrada y cumplimiento fiscal.',
         sol5: '<strong>IA aplicada al negocio</strong>: analiza datos de ventas y stock para sugerir mejoras y decisiones.',
@@ -51,17 +52,17 @@
         cap_metricas: 'Panel de métricas y evolución de ventas',
         cap_factura: 'Asistente de facturación electrónica AFIP/ARCA',
         arch_h: 'Arquitectura',
-        a1: '<strong>POS desktop (Electron + Node):</strong> base local SQLite, cola de sincronización y reintentos, impresión térmica y lector de barras.',
-        a2: '<strong>Backend (FastAPI + Python):</strong> API REST, autenticación por roles (JWT), multi-empresa, integración con AFIP/ARCA.',
-        a3: '<strong>Panel web (Next.js + Tailwind):</strong> KPIs, catálogo online, comprobantes y onboarding.',
+        a1: '<strong>POS desktop (JavaFX + Java):</strong> base local H2/SQLite, cola de sincronización y reintentos, impresión térmica y lector de barras.',
+        a2: '<strong>Backend (Java + Spring Boot):</strong> API REST, autenticación por roles con Spring Security (JWT), Hibernate/JPA, multi-empresa, integración con AFIP/ARCA.',
+        a3: '<strong>Panel web (React + Tailwind):</strong> KPIs, catálogo online, comprobantes y onboarding.',
         a4: '<strong>App móvil:</strong> scanner, inventario y carrito conectados a la misma API.',
-        a5: '<strong>Datos & deploy:</strong> Supabase/Postgres, Vercel (web), Railway (backend).',
+        a5: '<strong>Datos & deploy:</strong> PostgreSQL, Docker, Vercel (web), Railway (backend).',
         a6: '<strong>Integraciones:</strong> Mercado Pago (cobros + QR), Meta / WhatsApp Business API y Brave Search API (búsqueda de imágenes de productos).',
         ch_h: 'Desafíos técnicos resueltos',
         c1: 'Sincronización <strong>offline-first</strong> con resolución de conflictos entre POS y nube.',
         c2: 'Integración real con <strong>facturación electrónica AFIP/ARCA</strong> (certificados, CAE, multi-empresa).',
         c3: '<strong>Idempotencia</strong> en operaciones de venta/stock para evitar duplicados.',
-        c4: 'Empaquetado y releases del POS de escritorio vía CI (GitHub Actions).',
+        c4: 'Empaquetado y releases del POS de escritorio (JavaFX) con Maven vía CI (GitHub Actions).',
         final_h: '¿Querés ver una demo guiada?',
         final_p: 'Te muestro el sistema en vivo y cómo lo construí.',
         final_demo: 'Abrir demo', final_contact: 'Contactarme'
@@ -69,14 +70,14 @@
       en: {
         bc: 'Venta Simple', badge: 'FEATURED PROJECT · IN PRODUCTION',
         title: 'Venta Simple — Management SaaS for retail',
-        desc: 'A complete platform I designed and built end-to-end: <strong>offline-first</strong> desktop point of sale, cloud web dashboard, mobile app and <strong>electronic invoicing (AFIP/ARCA)</strong>. Used by real businesses.',
+        desc: 'A complete platform I designed and built end-to-end: a <strong>JavaFX desktop POS</strong> (offline-first), a <strong>Java / Spring Boot</strong> backend, web dashboard, mobile app and <strong>electronic invoicing (AFIP/ARCA)</strong>. Used by real businesses.',
         cta_demo: '🌐 View live demo', cta_github: '💻 GitHub',
         m1l: 'per sale (was 2–3 min)', m2l: 'cash close (was 40)', m3l: 'sells without internet',
         problem_h: 'Problem',
         problem_p: 'Small shops ran sales on paper or spreadsheets: slow checkout, calculation errors, no stock control and no visibility when the owner was away.',
         solution_h: 'Solution',
-        sol1: '<strong>Desktop POS</strong> (Electron) that works offline and syncs on its own.',
-        sol2: '<strong>Web dashboard</strong> (Next.js) with metrics, catalog and multi-company.',
+        sol1: '<strong>Desktop POS</strong> (JavaFX) that works offline and syncs on its own.',
+        sol2: '<strong>Web dashboard</strong> (React) with metrics, catalog and multi-company.',
         sol3: '<strong>Mobile app</strong> to scan and manage inventory from the phone.',
         sol4: '<strong>AFIP/ARCA invoicing</strong> built in, with tax compliance.',
         sol5: '<strong>AI applied to the business</strong>: analyzes sales and stock data to suggest improvements and decisions.',
@@ -87,17 +88,17 @@
         cap_metricas: 'Metrics dashboard and sales evolution',
         cap_factura: 'AFIP/ARCA electronic invoicing wizard',
         arch_h: 'Architecture',
-        a1: '<strong>Desktop POS (Electron + Node):</strong> local SQLite, sync queue with retries, thermal printing and barcode scanner.',
-        a2: '<strong>Backend (FastAPI + Python):</strong> REST API, role-based auth (JWT), multi-company, AFIP/ARCA integration.',
-        a3: '<strong>Web dashboard (Next.js + Tailwind):</strong> KPIs, online catalog, invoices and onboarding.',
+        a1: '<strong>Desktop POS (JavaFX + Java):</strong> local H2/SQLite, sync queue with retries, thermal printing and barcode scanner.',
+        a2: '<strong>Backend (Java + Spring Boot):</strong> REST API, role-based auth with Spring Security (JWT), Hibernate/JPA, multi-company, AFIP/ARCA integration.',
+        a3: '<strong>Web dashboard (React + Tailwind):</strong> KPIs, online catalog, invoices and onboarding.',
         a4: '<strong>Mobile app:</strong> scanner, inventory and cart connected to the same API.',
-        a5: '<strong>Data & deploy:</strong> Supabase/Postgres, Vercel (web), Railway (backend).',
+        a5: '<strong>Data & deploy:</strong> PostgreSQL, Docker, Vercel (web), Railway (backend).',
         a6: '<strong>Integrations:</strong> Mercado Pago (payments + QR), Meta / WhatsApp Business API and Brave Search API (product image search).',
         ch_h: 'Technical challenges solved',
         c1: '<strong>Offline-first</strong> sync with conflict resolution between POS and cloud.',
         c2: 'Real integration with <strong>AFIP/ARCA electronic invoicing</strong> (certificates, CAE, multi-company).',
         c3: '<strong>Idempotency</strong> on sale/stock operations to avoid duplicates.',
-        c4: 'Packaging and releases of the desktop POS via CI (GitHub Actions).',
+        c4: 'Packaging and releases of the desktop POS (JavaFX) with Maven via CI (GitHub Actions).',
         final_h: 'Want a guided demo?',
         final_p: 'I’ll show you the system live and how I built it.',
         final_demo: 'Open demo', final_contact: 'Contact me'
@@ -134,11 +135,11 @@
 <header class="border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 backdrop-blur-md dark:bg-slate-900/60 sticky top-0 z-40">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a class="flex items-center gap-3 group" href="index.html" aria-label="Volver al inicio">
-      <img src="assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
+      <img src="../assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
       <span class="font-semibold text-lg">Julian Molineris</span>
     </a>
     <div class="flex items-center gap-2">
-      <a href="CV_Julian_Molineris.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
+      <a href="CV_Julian_Molineris_Java.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
       <button class="px-3 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-xs hover:bg-slate-100 dark:hover:bg-slate-800" onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')" aria-label="Cambiar tema">Tema</button>
       <div class="flex items-center gap-1 text-xs ml-1">
         <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="es" onclick="setLang('es')">ES</button>
@@ -153,18 +154,19 @@
     <div>
       <nav class="text-indigo-100/80 text-sm mb-3"><a href="index.html" class="hover:underline">Inicio</a> / <span data-i18n="bc">Venta Simple</span></nav>
       <div class="inline-block bg-white rounded-xl px-4 py-2 shadow-md mb-4">
-        <img src="assets/venta-simple/vs-logo.png" alt="Logo Venta Simple" class="h-8 w-auto" />
+        <img src="../assets/venta-simple/vs-logo.png" alt="Logo Venta Simple" class="h-8 w-auto" />
       </div>
       <div><span class="inline-block px-3 py-1 rounded-full bg-white/15 text-xs font-semibold tracking-wide" data-i18n="badge">PROYECTO DESTACADO · EN PRODUCCIÓN</span></div>
       <h1 class="mt-3 text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="title">Venta Simple — SaaS de gestión para comercios</h1>
-      <p class="mt-3 text-indigo-100/90 text-lg" data-i18n="desc">Plataforma completa que diseñé y construí de punta a punta: punto de venta de escritorio <strong>offline-first</strong>, panel web en la nube, app móvil y <strong>facturación electrónica AFIP/ARCA</strong>. Usado por comercios reales.</p>
+      <p class="mt-3 text-indigo-100/90 text-lg" data-i18n="desc">Plataforma completa que diseñé y construí de punta a punta: <strong>POS de escritorio en JavaFX</strong> (offline-first), backend en <strong>Java / Spring Boot</strong>, panel web, app móvil y <strong>facturación electrónica AFIP/ARCA</strong>. Usado por comercios reales.</p>
 
       <div class="mt-5 flex gap-2 flex-wrap">
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Next.js</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">FastAPI (Python)</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Electron (POS)</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">App móvil</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Supabase / Postgres</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Java 21</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Spring Boot</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Spring Security</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">JavaFX (POS)</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">React (web)</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">PostgreSQL</span>
         <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Facturación AFIP/ARCA</span>
         <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Mercado Pago</span>
         <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Meta / WhatsApp API</span>
@@ -186,7 +188,7 @@
     <!-- Hero image: captura real del panel de métricas -->
     <picture class="justify-self-center md:justify-self-end">
       <img loading="eager"
-           src="assets/venta-simple/vs-real-metricas.png"
+           src="../assets/venta-simple/vs-real-metricas.png"
            alt="Panel de métricas real de Venta Simple"
            class="w-full max-w-md rounded-xl ring-4 ring-white/30 shadow-2xl bg-white"/>
     </picture>
@@ -203,8 +205,8 @@
     <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
       <h2 class="text-xl font-bold mb-2" data-i18n="solution_h">Solución</h2>
       <ul class="list-disc ml-5 space-y-1 text-slate-700 dark:text-slate-300">
-        <li data-i18n="sol1"><strong>POS de escritorio</strong> (Electron) que funciona offline y sincroniza solo.</li>
-        <li data-i18n="sol2"><strong>Panel web</strong> (Next.js) con métricas, catálogo y multi-empresa.</li>
+        <li data-i18n="sol1"><strong>POS de escritorio</strong> (JavaFX) que funciona offline y sincroniza solo.</li>
+        <li data-i18n="sol2"><strong>Panel web</strong> (React) con métricas, catálogo y multi-empresa.</li>
         <li data-i18n="sol3"><strong>App móvil</strong> para escanear e inventariar desde el celular.</li>
         <li data-i18n="sol4"><strong>Facturación AFIP/ARCA</strong> integrada y cumplimiento fiscal.</li>
         <li data-i18n="sol5"><strong>IA aplicada al negocio</strong>: analiza datos de ventas y stock para sugerir mejoras y decisiones.</li>
@@ -221,20 +223,20 @@
     <h2 class="text-2xl font-bold mb-4" data-i18n="gallery_h">Capturas reales del producto</h2>
     <div class="grid md:grid-cols-3 gap-4" id="gallery">
       <figure class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white">
-        <a href="assets/venta-simple/vs-real-pos.png" class="group block">
-          <img loading="lazy" src="assets/venta-simple/vs-real-pos.png" alt="Pantalla de caja del POS" class="w-full object-cover group-hover:scale-105 transition"/>
+        <a href="../assets/venta-simple/vs-real-pos.png" class="group block">
+          <img loading="lazy" src="../assets/venta-simple/vs-real-pos.png" alt="Pantalla de caja del POS" class="w-full object-cover group-hover:scale-105 transition"/>
         </a>
         <figcaption class="px-3 py-2 text-xs text-slate-500 dark:text-slate-400" data-i18n="cap_pos">Punto de venta — pantalla de caja real</figcaption>
       </figure>
       <figure class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white">
-        <a href="assets/venta-simple/vs-real-metricas.png" class="group block">
-          <img loading="lazy" src="assets/venta-simple/vs-real-metricas.png" alt="Panel de métricas" class="w-full object-cover group-hover:scale-105 transition"/>
+        <a href="../assets/venta-simple/vs-real-metricas.png" class="group block">
+          <img loading="lazy" src="../assets/venta-simple/vs-real-metricas.png" alt="Panel de métricas" class="w-full object-cover group-hover:scale-105 transition"/>
         </a>
         <figcaption class="px-3 py-2 text-xs text-slate-500 dark:text-slate-400" data-i18n="cap_metricas">Panel de métricas y evolución de ventas</figcaption>
       </figure>
       <figure class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white">
-        <a href="assets/venta-simple/vs-real-facturacion.png" class="group block">
-          <img loading="lazy" src="assets/venta-simple/vs-real-facturacion.png" alt="Asistente de facturación AFIP" class="w-full object-cover group-hover:scale-105 transition"/>
+        <a href="../assets/venta-simple/vs-real-facturacion.png" class="group block">
+          <img loading="lazy" src="../assets/venta-simple/vs-real-facturacion.png" alt="Asistente de facturación AFIP" class="w-full object-cover group-hover:scale-105 transition"/>
         </a>
         <figcaption class="px-3 py-2 text-xs text-slate-500 dark:text-slate-400" data-i18n="cap_factura">Asistente de facturación electrónica AFIP/ARCA</figcaption>
       </figure>
@@ -258,11 +260,11 @@
     <div>
       <h2 class="text-2xl font-bold mb-4" data-i18n="arch_h">Arquitectura</h2>
       <ul class="list-disc ml-6 space-y-2 text-slate-700 dark:text-slate-300">
-        <li data-i18n="a1"><strong>POS desktop (Electron + Node):</strong> base local SQLite, cola de sincronización y reintentos, impresión térmica y lector de barras.</li>
-        <li data-i18n="a2"><strong>Backend (FastAPI + Python):</strong> API REST, autenticación por roles (JWT), multi-empresa, integración con AFIP/ARCA.</li>
-        <li data-i18n="a3"><strong>Panel web (Next.js + Tailwind):</strong> KPIs, catálogo online, comprobantes y onboarding.</li>
+        <li data-i18n="a1"><strong>POS desktop (JavaFX + Java):</strong> base local H2/SQLite, cola de sincronización y reintentos, impresión térmica y lector de barras.</li>
+        <li data-i18n="a2"><strong>Backend (Java + Spring Boot):</strong> API REST, autenticación por roles con Spring Security (JWT), Hibernate/JPA, multi-empresa, integración con AFIP/ARCA.</li>
+        <li data-i18n="a3"><strong>Panel web (React + Tailwind):</strong> KPIs, catálogo online, comprobantes y onboarding.</li>
         <li data-i18n="a4"><strong>App móvil:</strong> scanner, inventario y carrito conectados a la misma API.</li>
-        <li data-i18n="a5"><strong>Datos & deploy:</strong> Supabase/Postgres, Vercel (web), Railway (backend).</li>
+        <li data-i18n="a5"><strong>Datos & deploy:</strong> PostgreSQL, Docker, Vercel (web), Railway (backend).</li>
         <li data-i18n="a6"><strong>Integraciones:</strong> Mercado Pago (cobros + QR), Meta / WhatsApp Business API y Brave Search API (búsqueda de imágenes de productos).</li>
       </ul>
     </div>
@@ -272,7 +274,7 @@
         <li data-i18n="c1">Sincronización <strong>offline-first</strong> con resolución de conflictos entre POS y nube.</li>
         <li data-i18n="c2">Integración real con <strong>facturación electrónica AFIP/ARCA</strong> (certificados, CAE, multi-empresa).</li>
         <li data-i18n="c3"><strong>Idempotencia</strong> en operaciones de venta/stock para evitar duplicados.</li>
-        <li data-i18n="c4">Empaquetado y releases del POS de escritorio vía CI (GitHub Actions).</li>
+        <li data-i18n="c4">Empaquetado y releases del POS de escritorio (JavaFX) con Maven vía CI (GitHub Actions).</li>
       </ul>
     </div>
   </section>
@@ -296,12 +298,12 @@
   <div class="max-w-6xl mx-auto px-4 py-10 grid sm:grid-cols-[1fr,auto] gap-6 items-center">
     <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="yr"></span> Julian Molineris.</div>
     <div class="justify-self-center sm:justify-self-end text-center">
-      <img src="assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
+      <img src="../assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
     </div>
   </div>
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 <script>window.JM_API_BASE = window.JM_API_BASE || "https://portfolio-backend-production-4e0d.up.railway.app";</script>
-<script src="jm-chat.js?v=4"></script>
+<script src="../jm-chat.js?v=4"></script>
 </body>
 </html>

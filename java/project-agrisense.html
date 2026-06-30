@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="es">
 <head>
+  <meta name="robots" content="noindex,nofollow" />
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>AgriSense — IoT para viveros | Julian Molineris</title>
-  <meta name="description" content="Monitoreo de humedad y riego automatizado para viveros con ESP32 y app móvil; backend propio en Python/Django REST." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="canonical" href="https://julianmolineris.com/project-agrisense" />
+  <meta name="description" content="Monitoreo ambiental y riego automático con ESP32, MQTT y tablero web. App móvil." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://julianmolineris.com/java/project-agrisense" />
   <meta property="og:title" content="AgriSense — IoT para viveros | Julian Molineris" />
-  <meta property="og:description" content="Sensores ESP32 + backend Django REST + app móvil; riego y ventilación automatizados por umbrales." />
+  <meta property="og:description" content="Sensores ESP32 + MQTT + panel en tiempo real y alertas." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://julianmolineris.com/project-agrisense" />
+  <meta property="og:url" content="https://julianmolineris.com/java/project-agrisense" />
   <meta property="og:image" content="https://julianmolineris.com/assets/profile.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,38 +26,36 @@
     const I18N = {
       es: {
         bc: 'AgriSense — IoT para viveros', title: 'AgriSense — IoT para viveros',
-        subtitle: 'Monitoreo de humedad/temperatura y riego automatizado para viveros con ESP32 y app móvil de control.',
+        subtitle: 'Monitoreo ambiental y riego automático con ESP32 y tablero web en tiempo real.',
         cta_pilot: 'Hablemos de un piloto', cta_github: '💻 GitHub',
         m1l: '+ sensores', m2l: 'monitoreo', m3l: 'alertas + riego',
         hero_card_sub: 'Riego automatizado por umbrales',
         problem_h: 'Problema', problem_p: 'Riego manual ineficiente, sin histórico de variables y sin alertas tempranas.',
         solution_h: 'Solución',
-        sol1: 'Nodos ESP32 con sensores de humedad y nivel; modo bajo consumo (deep sleep).',
-        sol2: 'Backend propio en Python (Django REST) con API e histórico.',
-        sol3: 'App móvil para ver lecturas y controlar actuadores.',
-        sol4: 'Automatización de riego y ventilación por umbrales (relés).',
+        sol1: 'Nodos ESP32 con sensores (humedad/temperatura).',
+        sol2: 'Transporte MQTT; backend en Java / Spring Boot para la ingesta.',
+        sol3: 'Time-series + panel Grafana; app móvil.',
+        sol4: 'Automatización de riego con umbrales.',
         results_h: 'Resultados', results_p: 'Ahorro de agua, mejor salud de plantas y decisiones con datos históricos.',
         stack_h: 'Stack',
-        s1: 'ESP32 + sensores (humedad / ultrasónico)', s2: 'Relés: bomba de riego + ventilación', s3: 'Python + Django REST (API + JWT)', s4: 'App móvil', s5: 'Deep sleep (autonomía a batería)',
-        gallery_h: 'El producto', g1: 'App de monitoreo y control de riego', g2: 'Sensores y riego por goteo en el cultivo', g3: 'Monitoreo ambiental en el vivero',
+        s1: 'ESP32 + sensores (DHT/Capacitivo)', s2: 'MQTT (Mosquitto/EMQX)', s3: 'Java + Spring Boot (ingesta)', s4: 'App móvil', s5: 'Time-series + Grafana',
         final_h: '¿Lo querés en tu vivero?', final_p: 'Hago un piloto con tus umbrales y sensores.', final_cta: 'Hablar ahora'
       },
       en: {
         bc: 'AgriSense — IoT for nurseries', title: 'AgriSense — IoT for nurseries',
-        subtitle: 'Humidity/temperature monitoring and automated irrigation for nurseries with ESP32 and a mobile control app.',
+        subtitle: 'Environmental monitoring and automated irrigation with ESP32 and a real-time web dashboard.',
         cta_pilot: 'Let’s talk about a pilot', cta_github: '💻 GitHub',
         m1l: '+ sensors', m2l: 'monitoring', m3l: 'alerts + irrigation',
         hero_card_sub: 'Threshold-based automated irrigation',
         problem_h: 'Problem', problem_p: 'Inefficient manual irrigation, no history of variables and no early alerts.',
         solution_h: 'Solution',
-        sol1: 'ESP32 nodes with humidity/level sensors; low-power deep sleep.',
-        sol2: 'Own Python (Django REST) backend with API and history.',
-        sol3: 'Mobile app to view readings and control actuators.',
-        sol4: 'Threshold-based irrigation and ventilation automation (relays).',
+        sol1: 'ESP32 nodes with sensors (humidity/temperature).',
+        sol2: 'MQTT transport; Java / Spring Boot backend for ingestion.',
+        sol3: 'Time-series + Grafana dashboard; mobile app.',
+        sol4: 'Threshold-based irrigation automation.',
         results_h: 'Results', results_p: 'Water savings, healthier plants and decisions backed by historical data.',
         stack_h: 'Stack',
-        s1: 'ESP32 + sensors (humidity / ultrasonic)', s2: 'Relays: irrigation pump + ventilation', s3: 'Python + Django REST (API + JWT)', s4: 'Mobile app', s5: 'Deep sleep (battery autonomy)',
-        gallery_h: 'The product', g1: 'Monitoring app with irrigation control', g2: 'Sensors and drip irrigation in the crop', g3: 'Environmental monitoring in the nursery',
+        s1: 'ESP32 + sensors (DHT/capacitive)', s2: 'MQTT (Mosquitto/EMQX)', s3: 'Java + Spring Boot (ingestion)', s4: 'Mobile app', s5: 'Time-series + Grafana',
         final_h: 'Want it in your nursery?', final_p: 'I’ll set up a pilot with your thresholds and sensors.', final_cta: 'Talk now'
       }
     };
@@ -75,11 +74,11 @@
 <header class="border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 backdrop-blur-md dark:bg-slate-900/60 sticky top-0 z-40">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a class="flex items-center gap-3 group" href="index.html">
-      <img src="assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
+      <img src="../assets/favicon.svg" alt="Logo JM" class="w-8 h-8 group-hover:scale-110 transition-transform"/>
       <span class="font-semibold text-lg">Julian Molineris</span>
     </a>
     <div class="flex items-center gap-2">
-      <a href="CV_Julian_Molineris.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
+      <a href="CV_Julian_Molineris_Java.pdf" download class="px-3 py-1 rounded-lg bg-indigo-600 text-white text-xs hover:bg-indigo-700">CV</a>
       <button class="px-3 py-1 rounded-lg border border-slate-300 dark:border-slate-700 text-xs hover:bg-slate-100 dark:hover:bg-slate-800" onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')">Tema</button>
       <div class="flex items-center gap-1 text-xs ml-1">
         <button class="px-2 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" data-lang="es" onclick="setLang('es')">ES</button>
@@ -93,16 +92,16 @@
   <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-[1fr,380px] gap-10 items-center">
     <div>
       <nav class="text-indigo-100/80 text-sm mb-3"><a href="index.html" class="hover:underline">Inicio</a> / <span data-i18n="bc">AgriSense — IoT para viveros</span></nav>
-      <img src="assets/iot/agrisense-wordmark.png" alt="AgriSense" class="h-10 md:h-12 mb-3 drop-shadow" loading="lazy" />
       <h1 class="text-3xl md:text-5xl font-extrabold leading-tight" data-i18n="title">AgriSense — IoT para viveros</h1>
-      <p class="mt-3 text-indigo-100/90" data-i18n="subtitle">Monitoreo de humedad/temperatura y riego automatizado para viveros con ESP32 y app móvil de control.</p>
+      <p class="mt-3 text-indigo-100/90" data-i18n="subtitle">Monitoreo ambiental y riego automático con ESP32 y tablero web en tiempo real.</p>
 
       <div class="mt-5 flex gap-2 flex-wrap">
         <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">ESP32</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Sensores</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Python · Django REST</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">MQTT</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Java / Spring Boot</span>
         <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">App móvil</span>
-        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Riego automatizado</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Time-series</span>
+        <span class="px-3 py-1 rounded-full bg-indigo-100/90 text-indigo-900 text-xs font-medium">Grafana</span>
       </div>
 
       <div class="mt-6 flex flex-wrap gap-3">
@@ -118,7 +117,11 @@
     </div>
 
     <div class="justify-self-center md:justify-self-end">
-      <img src="assets/iot/agrisense-hero.jpg" alt="App AgriSense monitoreando un invernadero con sensores y riego" class="w-full max-w-sm rounded-2xl ring-4 ring-white/20 shadow-2xl" loading="lazy" />
+      <div class="w-72 h-72 rounded-2xl bg-white/10 ring-4 ring-white/20 shadow-2xl flex flex-col items-center justify-center gap-2 backdrop-blur-sm">
+        <span class="text-7xl">🌱</span>
+        <span class="text-sm text-indigo-50/90 font-medium">ESP32 · MQTT · Spring Boot</span>
+        <span class="text-xs text-indigo-100/70" data-i18n="hero_card_sub">Riego automatizado por umbrales</span>
+      </div>
     </div>
   </div>
 </section>
@@ -132,10 +135,10 @@
     <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
       <h2 class="text-xl font-bold mb-2" data-i18n="solution_h">Solución</h2>
       <ul class="list-disc ml-5 space-y-1 text-slate-700 dark:text-slate-300">
-        <li data-i18n="sol1">Nodos ESP32 con sensores de humedad y nivel; modo bajo consumo (deep sleep).</li>
-        <li data-i18n="sol2">Backend propio en Python (Django REST) con API e histórico.</li>
-        <li data-i18n="sol3">App móvil para ver lecturas y controlar actuadores.</li>
-        <li data-i18n="sol4">Automatización de riego y ventilación por umbrales (relés).</li>
+        <li data-i18n="sol1">Nodos ESP32 con sensores (humedad/temperatura).</li>
+        <li data-i18n="sol2">Transporte MQTT; backend en Java / Spring Boot para la ingesta.</li>
+        <li data-i18n="sol3">Time-series + panel Grafana; app móvil.</li>
+        <li data-i18n="sol4">Automatización de riego con umbrales.</li>
       </ul>
     </article>
     <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
@@ -147,30 +150,12 @@
   <section>
     <h2 class="text-2xl font-bold mb-4" data-i18n="stack_h">Stack</h2>
     <ul class="list-disc ml-6 space-y-1 text-slate-700 dark:text-slate-300">
-      <li data-i18n="s1">ESP32 + sensores (humedad / ultrasónico)</li>
-      <li data-i18n="s2">Relés: bomba de riego + ventilación</li>
-      <li data-i18n="s3">Python + Django REST (API + JWT)</li>
+      <li data-i18n="s1">ESP32 + sensores (DHT/Capacitivo)</li>
+      <li data-i18n="s2">MQTT (Mosquitto/EMQX)</li>
+      <li data-i18n="s3">Java + Spring Boot (ingesta)</li>
       <li data-i18n="s4">App móvil</li>
-      <li data-i18n="s5">Deep sleep (autonomía a batería)</li>
+      <li data-i18n="s5">Time-series + Grafana</li>
     </ul>
-  </section>
-
-  <section>
-    <h2 class="text-2xl font-bold mb-4" data-i18n="gallery_h">El producto</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-        <img src="assets/iot/agrisense-mockup.jpg" alt="App AgriSense — pantallas de monitoreo y control" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <figcaption class="p-3 text-sm text-slate-600 dark:text-slate-400" data-i18n="g1">App de monitoreo y control de riego</figcaption>
-      </figure>
-      <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-        <img src="assets/iot/agrisense-sensors.jpg" alt="Sensores y riego por goteo en el cultivo" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <figcaption class="p-3 text-sm text-slate-600 dark:text-slate-400" data-i18n="g2">Sensores y riego por goteo en el cultivo</figcaption>
-      </figure>
-      <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
-        <img src="assets/iot/agrisense-greenhouse.jpg" alt="Monitoreo ambiental en el vivero" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <figcaption class="p-3 text-sm text-slate-600 dark:text-slate-400" data-i18n="g3">Monitoreo ambiental en el vivero</figcaption>
-      </figure>
-    </div>
   </section>
 
   <section class="mt-8 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
@@ -188,12 +173,12 @@
   <div class="max-w-6xl mx-auto px-4 py-10 grid sm:grid-cols-[1fr,auto] gap-6 items-center">
     <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="yr"></span> Julian Molineris.</div>
     <div class="justify-self-center sm:justify-self-end text-center">
-      <img src="assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
+      <img src="../assets/qr_info.png" class="w-24 h-24 mx-auto rounded-md shadow" alt="QR /info"/>
     </div>
   </div>
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 <script>window.JM_API_BASE = window.JM_API_BASE || "https://portfolio-backend-production-4e0d.up.railway.app";</script>
-<script src="jm-chat.js?v=4"></script>
+<script src="../jm-chat.js?v=4"></script>
 </body>
 </html>
